@@ -1,0 +1,19 @@
+<nav id="navbar">
+    <a href="/" id="logo"><img src="../../public/logo.png" alt="EventsHub Logo"></a>
+    <a href="/events" class="nav-text"><h1>Events</h1></a>
+    <a href="/businesses" class="nav-text"><h1>Businesses</h1></a>
+    <a href="/forum" class="nav-text"><h1>Forum</h1></a>
+    <form action="/search" method="GET">
+        <input type="text" name="q" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    <a href="/signup" class="nav-text"><h1>Sign Up</h1></a>
+    <a href="/login" class="nav-text"><h1>Login</h1></a>
+    <a href="/login" class="nav-text" style="display: none;"><h1>Sign Out</h1></a>
+</nav>
+
+<script>
+    fetch ("https://jsonplaceholder.typicode.com/users")
+        .then(res => res.json())
+        .then(data => {})
+</script>
