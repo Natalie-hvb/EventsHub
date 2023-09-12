@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<%- include("./partials/header.ejs") %>
-
-<body>
-    <%- include("./partials/nav.ejs") %>
+<%- include("./partials/head.ejs") %>
 
     <ul>
         <% results.forEach(result => { %>
@@ -18,5 +13,5 @@
             </li>
         <% }); %>
     </ul>
-</body>
-</html>
+
+    <%- include('./partials/footer'); -%>
