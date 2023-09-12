@@ -1,5 +1,5 @@
 const homePage = (req, res) => {
-    res.render('main', {title:"Home", user: req.user});
+    res.render('main', {title:"Home"});
 }
 
 module.exports = {

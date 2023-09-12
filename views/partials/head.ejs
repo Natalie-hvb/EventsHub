@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventsHub | </title>
+    <title>EventsHub | 
+    </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" defer>
-    <link rel="stylesheet" href="/styles.css" type="text/css" defer>
 </head>
 <body>
-    <nav id="navbar">
-        <a href="/"><img src="/logo.png" alt="EventsHub Logo" id="logo"></a>
-        <a href="/events"><h3 class="nav-text">Events</h3></a>
-        <a href="/businesses"><h3 class="nav-text">Businesses</h3></a>
-        <a href="/forum"><h3 class="nav-text">Forum</h3></a>
-        <div id="nav-right">
-            <form action="/search" method="GET">
-                <input type="text" name="q" placeholder="Search...">
-                <button type="submit" id="searchbar">Search</button>
-            </form>
-            <% if (!user) { %> <!-- If user is not logged in -->
-                <a href="/signup"><h3 class="nav-text">Sign Up</h3></a>
-                <a href="/login"><h3 class="nav-text">Login</h3></a>
-            <% } else { %> <!-- If user is logged in -->
-                <a href="/logout"><h3 class="nav-text">Sign Out</h3></a>
-            <% } %>
-            <% if (user) { %>
-                <a href="/profile/<%= user._id %>">
-                    <img src="<%= user.profileImageUrl || '/default-profile-image.jpg' %>" alt="Profile Picture" id="profile-pic">
-                </a>
-            <% } %>
-        </div>
+    <nav id="navbar" style="display: flex; flex-direction: row;">
+        <a href="/" id="logo"><img src="../../public/logo.png" alt="EventsHub Logo"></a>
+        <a href="/events" class="nav-text"><h1>Events</h1></a>
+        <a href="/businesses" class="nav-text"><h1>Businesses</h1></a>
+        <a href="/forum" class="nav-text"><h1>Forum</h1></a>
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+        <a href="/signup" class="nav-text"><h1>Sign Up</h1></a>
+        <a href="/login" class="nav-text"><h1>Login</h1></a>
+        <a href="/logout" class="nav-text"><h1>Sign Out</h1></a>
     </nav>
     
     <script>

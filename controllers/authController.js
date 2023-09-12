@@ -43,11 +43,11 @@ const createToken = (id) => {
 // controller actions
 
 const signUp = (req, res) => {
-    res.render('signup', {title:"Sign Up", user: req.user})
+    res.render('signup')
 }
 
 const logIn = (req, res) => {
-    res.render('login', {title:"Login", user: req.user})
+    res.render('login')
 }
 
 const signUpNewUser = async (req, res) => {
