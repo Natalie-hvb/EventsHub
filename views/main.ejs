@@ -1,4 +1,13 @@
 <%- include("./partials/head.ejs") %>
 
+<!-- Your existing code -->
+<ul>
+    <% if (user) { %>
+        <li>Welcome, <%= user.email %></li>
+    <% } else { %>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/signup" class="btn">Sign up</a></li>
+    <% } %>
+</ul>
 
 <%- include('./partials/footer'); -%>
