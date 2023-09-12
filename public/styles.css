@@ -1,5 +1,40 @@
+#navbar{
+    size: 100%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo{
+    width: 200px;
+    margin: 10px 10px;
+}
+
 #searchbar{
     font-size: 1rem;
     justify-self: right;
+    margin-right: 20px;
 }
 
+#nav-right{
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+#profile-pic{
+    border-radius: 50%;
+    height: 40px;
+}
+
+nav a{
+    text-decoration: none;
+    color: orangered;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0 10px;
+}
+
+.nav-text{
+    height: 30px;
+}
