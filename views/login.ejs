@@ -1,31 +1,16 @@
 <%- include("./partials/head.ejs") %>
-<style>
-    input {
-        display: block;
-    }
-    .container > div {
-        width: 40%;
-    }
-    .error{
-        color: #ff0099;
-        margin: 10px 2px;
-        font-size: 0.8em;
-        font-weight: bold;
-    }
-</style>
-<div class="container">
-    <div>
-        <h2>Login</h2>
-        <form action="/log-in" method="post">
-            <label for="email">Email: </label>
-            <input type="email" name="email" required>
-            <div class="email error"></div>
-            <label for="password">Password: </label>
-            <input type="password" name="password" required>
-            <div class="password error"></div>
-            <button>Login</button>
-        </form>
-    </div>
+
+<div class="container" id="login-block">
+    <h2>Login</h2>
+    <form action="/log-in" method="post">
+        <label for="email">Email: </label>
+        <input type="email" name="email" required>
+        <div class="email error"></div>
+        <label for="password">Password: </label>
+        <input type="password" name="password" required>
+        <div class="password error"></div>
+        <button>Login</button>
+    </form>
 </div>
 
 <script>

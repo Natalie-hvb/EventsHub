@@ -14,7 +14,7 @@
         <a href="/businesses"><h3 class="nav-text">Businesses</h3></a>
         <a href="/forum"><h3 class="nav-text">Forum</h3></a>
         <div id="nav-right">
-            <form action="/search" method="GET">
+            <form action="/search" method="GET" id="search-block">
                 <input type="text" name="q" placeholder="Search...">
                 <button type="submit" id="searchbar">Search</button>
             </form>
@@ -26,7 +26,7 @@
                 <!-- If user is logged in -->
                 <a href="/logout" class="nav-link">Sign Out</a>
                 <a href="/profile/<%= user._id %>" class="nav-link">
-                    <img src="<%= user.profileImageUrl || '/default-profile-image.jpg' %>" alt="Profile Picture" id="profile-pic">
+                    <img src="<%= user.profileImageUrl || '/profile.png' %>" alt="Profile Picture" id="profile-pic">
                 </a>
             <% } %>
         </div>
