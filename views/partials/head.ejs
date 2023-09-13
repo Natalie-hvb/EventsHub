@@ -18,14 +18,15 @@
                 <input type="text" name="q" placeholder="Search...">
                 <button type="submit" id="searchbar">Search</button>
             </form>
-            <% if (!user) { %> <!-- If user is not logged in -->
-                <a href="/signup"><h3 class="nav-text">Sign Up</h3></a>
-                <a href="/login"><h3 class="nav-text">Login</h3></a>
-            <% } else { %> <!-- If user is logged in -->
-                <a href="/logout"><h3 class="nav-text">Sign Out</h3></a>
-            <% } %>
-            <% if (user) { %>
-                <a href="/profile/<%= user._id %>">
+
+            <% if (!user) { %>
+                <!-- If user is not logged in -->
+                <a href="/signup" class="nav-link">Sign Up</a>
+                <a href="/login" class="nav-link">Login</a>
+            <% } else { %>
+                <!-- If user is logged in -->
+                <a href="/logout" class="nav-link">Sign Out</a>
+                <a href="/profile/<%= user._id %>" class="nav-link">
                     <img src="<%= user.profileImageUrl || '/default-profile-image.jpg' %>" alt="Profile Picture" id="profile-pic">
                 </a>
             <% } %>

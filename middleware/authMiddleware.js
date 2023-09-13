@@ -4,18 +4,19 @@ const userModel = require('../models/user');
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
-  // check json web token exists & is verified
+  // Check if the token exists and is verified
   if (token) {
     jwt.verify(token, 'Developers secret EventsHub', (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        res.redirect('/login');
+        res.redirect('/login'); // Redirect to login page on verification failure
       } else {
         console.log(decodedToken);
-        res.redirect('/');
+        next(); // Pass to the next middleware if token is valid
       }
     });
   } else {
+    // Redirect to login page if no token is found
     res.redirect('/login');
   }
 };

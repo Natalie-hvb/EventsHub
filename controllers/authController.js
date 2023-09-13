@@ -57,7 +57,7 @@ const signUpNewUser = async (req, res) => {
         const user = await userModel.create({ username, name, surname, email, password, location });
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.redirect('/');
+        res.render('main', { user });
     }
     catch (err) {
         console.error(err);
@@ -73,10 +73,11 @@ const logInUser = async (req, res) => {
         const user = await userModel.login(email, password);
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.redirect('/');
-    }
-    catch (err) {
-        const errors = handleErrors(err)
+
+        // Pass the user object to the template
+        res.render('main', { user });
+    } catch (err) {
+        const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
 }
