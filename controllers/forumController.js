@@ -1,5 +1,5 @@
-const postModel = require('../models/postModel'); // Import your Post model
-const commentModel = require('../models/commentModel'); // Import your Comment model
+const postModel = require('../models/postModel'); // Import Post model
+const commentModel = require('../models/commentModel'); // Import Comment model
 
 const getPost = (req, res) => {
   postModel

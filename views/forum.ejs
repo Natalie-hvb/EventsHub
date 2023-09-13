@@ -1,15 +1,18 @@
 <%- include("./partials/head.ejs") %>
 
 <main>
-    <div id="input">
-        <form action="/create-post" method="post" onsubmit="return validateForm()">
-            <h3>Post a message</h3>
-            <textarea name="message" id="message" maxlength="1000"></textarea>
-            <div id="submit-form">
-                
-                <button>Post a message</button>
-            </div>
-        </form>
+    <div class="container container-custom">
+        <div class="form-custom">
+            <form action="/create-post" method="post" onsubmit="return validateForm()">
+                <h3 class="form-heading">Post a Message</h3>
+                <div class="form-group">
+                    <textarea name="message" id="message" class="form-control" rows="5" maxlength="1000" placeholder="Write your message here" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-custom">Post a message</button>
+                </div>
+            </form>
+        </div>
     </div>
 
 
