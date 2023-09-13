@@ -1,6 +1,4 @@
-
 const User = require('../models/User');
-
 
 // Handle requests for a user's profile by their ID
 exports.getUserById = async (req, res) => {
