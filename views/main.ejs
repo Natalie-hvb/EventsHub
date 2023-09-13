@@ -1,13 +1,19 @@
+
 <%- include("./partials/head.ejs") %>
 
 <!-- Your existing code -->
 <ul>
     <% if (user) { %>
-        <li>Welcome, <%= user.email %></li>
+        <p>Welcome, <%= user.email %></p>
+
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit" id="searchbar">Search</button>
+        </form>
     <% } else { %>
-        <li><a href="/login">Log in</a></li>
-        <li><a href="/signup" class="btn">Sign up</a></li>
+        <p>Please Log in to see the content</p>
     <% } %>
 </ul>
+
 
 <%- include('./partials/footer'); -%>

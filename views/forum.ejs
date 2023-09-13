@@ -1,0 +1,60 @@
+<%- include("./partials/head.ejs") %>
+
+<main>
+    <div id="input">
+        <form action="/create-post" method="post" onsubmit="return validateForm()">
+            <h3>Post a message</h3>
+            <textarea name="message" id="message" maxlength="1000"></textarea>
+            <div id="submit-form">
+                
+                <button>Post a message</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="output">
+        <% posts.forEach(post => { %>
+            <div id="output-posts">
+                
+                <p><%= post.message %></p>
+                <p>Posted by: <%= user.firstName %> <%= user.lastName %></p>
+            </div>
+            <div id="part-two-output">
+                <div id="comment-output">
+                    <% if(post.comments.length > 0) { %>
+                        <% post.comments.forEach(comment => { %>
+                            <p><%= comment.comment %></p>
+                            <p>Comment by: <%= user.firstName %> <%= user.lastName %></p>
+                        <% }) %>
+                    <% } %>
+                </div>
+                <form method="POST" action="/add-comment/<%= post._id %>">
+                    <h3>Post a comment</h3>
+                    <input name="comment" id="comment" required>
+                    <div id="move-btn">
+                        <button id="second-btn">Post a comment</button>
+                    </div>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</main>
+
+
+<script>
+    function validateForm() {
+        var messageInput = document.getElementById("message");
+        var message = messageInput.value;
+    
+        if (message.length < 25) {
+            alert("Please enter at least 25 characters in the message.");
+            return false;
+        }
+    
+        return true;
+    }
+</script>
+
+
+<%- include('./partials/footer'); -%>
