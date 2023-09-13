@@ -1,3 +1,4 @@
+
 {
   "name": "express-jwt-auth",
   "version": "1.0.0",
@@ -28,3 +29,4 @@
   "homepage": "https://github.com/iamshaunjp/node-express-jwt-auth#readme",
   "description": ""
 }
+

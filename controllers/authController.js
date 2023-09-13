@@ -1,3 +1,4 @@
+
 const User = require("../models/User");
 const jwt = require('jsonwebtoken');
 
@@ -95,4 +96,3 @@ module.exports = {
   signup_post,
   login_post,
   logout_get
-}
