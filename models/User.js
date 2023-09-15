@@ -34,7 +34,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter a password'],
     minlength: [6, 'Minimum password length is 6 characters'],
-  }
+  },
+  post:[
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "post"
+    }
+  ],
+  comments:[{
+    type:mongoose.Types.ObjectId,           
+    ref:'Comment'                           
+}]
 });
 
 

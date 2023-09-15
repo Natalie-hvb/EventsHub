@@ -1,63 +1,62 @@
-<%- include("./partials/head.ejs") %>
+<%- include('partials/head'); -%>
 
-<main>
-    <div class="container container-custom">
-        <div class="form-custom">
-            <form action="/create-post" method="post" onsubmit="return validateForm()">
-                <h3 class="form-heading">Post a Message</h3>
-                <div class="form-group">
-                    <textarea name="message" id="message" class="form-control" rows="5" maxlength="1000" placeholder="Write your message here" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-custom">Post a message</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div>
+    <h1>Hi <%= user.name %></h1>
+  </div>
 
+<form action="/new-post" method="post" onsubmit="return validateForm()">
+    <input type="text" id="title" name="title"  placeholder="Name" maxlength="15">
+    <br/><br/>
+    <textarea name="message" id="message"  maxlength="40" placeholder="Message"></textarea>
+    <button>Post a message</button>
+</form>
 
-    <div id="output">
-        <% posts.forEach(post => { %>
-            <div id="output-posts">
-                
-                <p><%= post.message %></p>
-                <p>Posted by: <%= user.firstName %> <%= user.lastName %></p>
-            </div>
-            <div id="part-two-output">
-                <div id="comment-output">
-                    <% if(post.comments.length > 0) { %>
-                        <% post.comments.forEach(comment => { %>
-                            <p><%= comment.comment %></p>
-                            <p>Comment by: <%= user.firstName %> <%= user.lastName %></p>
-                        <% }) %>
-                    <% } %>
-                </div>
-                <form method="POST" action="/add-comment/<%= post._id %>">
-                    <h3>Post a comment</h3>
-                    <input name="comment" id="comment" required>
-                    <div id="move-btn">
-                        <button id="second-btn">Post a comment</button>
+<div id="output" class="posts content">
+    <% if(posts.length > 0) {%>
+        <% for (let i = 0; i < posts.length; i++) { %>
+            <div>
+                <h5><%= posts[i].title%></h5>
+                <p><%= posts[i].message.slice(0, 20) %></p>
+                <a href="/post/<%= posts[i]._id %>">See more..</a>
+                <h6>written by: <%= user.name %> on: <%= posts[i].createdAt %></h6>
+                <div>
+                    <form action="/add-comment/<%=posts[i]._id%>" method="post">
+                      <input name="comment" placeholder="write your comment" >
+                      <button>Send</button> 
+                    </form>
+                    <div>
+                        <% if(posts[i].comments.length > 0) {%>
+                            <% posts[i].comments.forEach(comment =>{ %>
+                                <div>
+                                    <h6>written by: <%= comment.name %> on: <%= posts[i].createdAt %></h6>
+                                    <h4><%= comment.comment %></h4>
+                                </div>
+                            <% }) %> 
+                        <% } %>
                     </div>
-                </form>
+                  </div>
             </div>
-        <% }) %>
-    </div>
-</main>
-
+        <% } %>
+    <% } %>
+</div>
 
 <script>
     function validateForm() {
-        var messageInput = document.getElementById("message");
-        var message = messageInput.value;
+        let messageInput = document.getElementById("message");
+        let titleInput = document.getElementById("title")
+        const message = messageInput.value;
+        const name = nameInput.value
     
-        if (message.length < 25) {
-            alert("Please enter at least 25 characters in the message.");
+        if (title === "" || message === "") {
+            alert("Both fields are required");
             return false;
         }
-    
         return true;
     }
 </script>
 
 
+
+
 <%- include('./partials/footer'); -%>
+
