@@ -1,0 +1,16 @@
+<%- include("./partials/head.ejs") %>
+
+<div id="banner">
+    <h1 id="slogan">WHERE PEOPLE MEET</h1>
+
+    <!-- Buttons -->
+    <div id="buttons">
+        <% if (!user) { %>
+            <a href="/signup" class="button" id="sign-up">Sign Up</a>
+            <a href="/login" class="button" id="login">Login</a>
+        <% } %>
+        <a href="#" class="button">Top Events</a>
+    </div>
+</div>
+
+<%- include('./partials/footer'); -%>

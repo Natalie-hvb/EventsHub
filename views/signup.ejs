@@ -1,0 +1,115 @@
+<%- include('partials/head'); -%>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <form action="/signup" class="border p-4 rounded" method="post">
+              <h2 class="mb-4">Sign up</h2>
+
+              <div class="form-group">
+                  <label for="username">Create Username:</label>
+                  <input type="text" name="username" class="form-control">
+                  <div class="username error"></div>
+              </div>
+
+              <div class="form-group">
+                  <label for="name">First Name:</label>
+                  <input type="text" name="name" class="form-control">
+                  <div class="name error"></div>
+              </div>
+
+              <div class="form-group">
+                  <label for="surname">Last Name:</label>
+                  <input type="text" name="surname" class="form-control">
+                  <div class="surname error"></div>
+              </div>
+
+              <div class="form-group">
+                  <label for="city">City:</label>
+                  <input type="text" name="city" class="form-control">
+                  <div class="city error"></div>
+              </div>
+
+              <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" name="email" class="form-control" required>
+                  <div class="email error"></div>
+              </div>
+
+              <div class="form-group">
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" class="form-control" required>
+                  <div class="password error"></div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Sign up</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+  const usernameError = document.querySelector('.username.error');
+  const nameError = document.querySelector('.name.error');
+  const surnameError = document.querySelector('.surname.error');
+  const cityError = document.querySelector('.city.error');
+  const emailError = document.querySelector('.email.error');
+  const passwordError = document.querySelector('.password.error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // reset errors
+    usernameError.textContent = '';
+    nameError.textContent = '';
+    surnameError.textContent = '';
+    cityError.textContent = '';
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
+    // get values
+    const username = form.username.value;
+    const name = form.name.value;
+    const surname = form.surname.value;
+    const city = form.city.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      const res = await fetch('/signup', { 
+        method: 'POST', 
+        body: JSON.stringify({ username, name, surname, city, email, password }),
+        headers: {'Content-Type': 'application/json'}
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        usernameError.textContent = data.errors.username;
+        nameError.textContent = data.errors.name;
+        surnameError.textContent = data.errors.surname;
+        cityError.textContent = data.errors.city;
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+        location.assign('/');
+      }
+
+    }
+    catch (err) {
+      console.log(err);
+    }
+
+  });
+
+  // Rest of your JavaScript code...
+});
+
+
+  
+</script>
+
