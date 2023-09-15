@@ -11,7 +11,8 @@ const requireAuth = (req, res, next) => {
         console.log(err.message);
         res.redirect('/login');
       } else {
-        console.log(decodedToken);
+        res.locals.userId = decodedToken.id;
+        // console.log(decodedToken.id)
         next();
       }
     });

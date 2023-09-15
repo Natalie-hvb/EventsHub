@@ -13,10 +13,12 @@
                 <p class="card-text"><%= post.createdAt %></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <form action="/delete-post/<%= post._id %>" method="post">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
-                <a href="/post/edit/<%= post._id %>" class="btn btn-primary">Edit Post</a>
+                <% if (post.user_id._id.toString() === user.id.toString()) { %>
+                    <form action="/delete-post/<%= post._id %>" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="/post/edit/<%= post._id %>" class="btn btn-primary">Edit Post</a>
+                <% } %>
             </div>
         </div>
     </main>

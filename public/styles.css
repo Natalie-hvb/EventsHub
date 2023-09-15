@@ -1,10 +1,21 @@
-/* #navbar{
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  /* max-width: 1000px;
+  border: 2px solid red; */
+}
+
+
+#navbar{
   size: 100%;
-  background-color: #ccc;
+  /* background-color: #ccc;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-} */
+  align-items: center; */
+}
 
 #logo{
   width: 200px;

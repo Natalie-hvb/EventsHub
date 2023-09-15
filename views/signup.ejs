@@ -1,52 +1,116 @@
 <%- include('partials/head'); -%>
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
+<style>
+  body {
+    background: linear-gradient(to bottom, white, black);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  label.required::after {
+    content: '*';
+    color: red;
+    margin-right: 5px;
+  }
+
+  .custom-input:focus,
+  .custom-input:hover {
+    border-color: black;
+    box-shadow: 0 0 5px black;
+  }
+
+  .better-together-wrapper {
+    margin: auto;
+    border: 2px solid blue;
+    height: 100%;
+    width: 100%;
+    background-image: url("../public/img/signup-img.jpeg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Adjust the shadow values as needed */
+}
+
+</style>
+
+<div class="better-together-wrapper">
+
+  <div class="login-option text-center mt-4">
+    <h3>Already have an account?</h3>
+    <a class="btn btn-outline-dark" href="/login">Login</a>
+  </div>
+
+  
+  <div class="text-center mt-4">
+    <!-- <img src="../public/img/signup-img.jpeg" alt="Image Description"> -->
+    <h3 class="display-4 fw-bold text-shadow">Join Us for Unforgettable Moments</h3>
+  </div>
+
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
       <div class="col-md-6">
-          <form action="/signup" class="border p-4 rounded" method="post">
-              <h2 class="mb-4">Sign up</h2>
-
-              <div class="form-group">
-                  <label for="username">Create Username:</label>
-                  <input type="text" name="username" class="form-control">
-                  <div class="username error"></div>
-              </div>
-
-              <div class="form-group">
-                  <label for="name">First Name:</label>
-                  <input type="text" name="name" class="form-control">
-                  <div class="name error"></div>
-              </div>
-
-              <div class="form-group">
-                  <label for="surname">Last Name:</label>
-                  <input type="text" name="surname" class="form-control">
-                  <div class="surname error"></div>
-              </div>
-
-              <div class="form-group">
-                  <label for="city">City:</label>
-                  <input type="text" name="city" class="form-control">
-                  <div class="city error"></div>
-              </div>
-
-              <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="email" name="email" class="form-control" required>
-                  <div class="email error"></div>
-              </div>
-
-              <div class="form-group">
-                  <label for="password">Password:</label>
-                  <input type="password" name="password" class="form-control" required>
-                  <div class="password error"></div>
-              </div>
-
-              <button type="submit" class="btn btn-primary">Sign up</button>
-          </form>
+        <form action="/signup" class="border p-4 rounded bg-light-opacity" method="post">
+          <h2 class="mb-4">Sign up</h2>
+  
+          <div class="form-group">
+            <label for="username" class="required">Create Username:</label>
+            <input type="text" name="username" class="form-control custom-input">
+            <div class="username error"></div>
+          </div>
+  
+          <div class="form-group">
+            <label for="name" class="required">First Name:</label>
+            <input type="text" name="name" class="form-control custom-input">
+            <div class="name error"></div>
+          </div>
+  
+          <div class="form-group">
+            <label for="surname" class="required">Last Name:</label>
+            <input type="text" name="surname" class="form-control custom-input">
+            <div class="surname error"></div>
+          </div>
+  
+          <div class="form-group">
+            <label for="city" class="required">City:</label>
+            <select name="city" class="form-control custom-input">
+              <option value="Amsterdam">Amsterdam</option>
+              <option value="Rotterdam">Rotterdam</option>
+              <option value="Utrecht">Utrecht</option>
+              <option value="The Hague">The Hague</option>
+              <option value="Eindhoven">Eindhoven</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="city error"></div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email" class="required">Email:</label>
+            <input type="email" name="email" class="form-control custom-input">
+            <div class="email error"></div>
+          </div>
+  
+          <div class="form-group">
+            <label for="password" class="required">Password:</label>
+            <input type="password" name="password" class="form-control custom-input">
+            <div class="password error"></div>
+          </div>
+  
+          <div class="login-option text-center d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-dark text-white">Sign up</button>
+          </div>
+        </form>
       </div>
+    </div>
   </div>
 </div>
+
+
+
 
 <%- include('partials/footer'); -%>
 
