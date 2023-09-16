@@ -1,22 +1,35 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const moment = require('moment');
 
-const postModel = new Schema({
+const postSchema = new Schema({
+    title : {
+        type: String,
+        required: true
+    },
     message : {
         type: String,
         required: true,
-        minlength: 25
     },
-    user: {
+    comments:[
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "comment"
+        }
+    ],
+    user_id:{
         type: mongoose.Types.ObjectId,
-        ref: "user", // Reference to the User model
+        ref: "user"
     },
-    comments: {
-        type: mongoose.Types.ObjectId,
-        ref: "comment"
+    created_at: {
+        type: Date,
+        default: Date.now,
+        get: function (createdAt) {
+            return moment(createdAt).format('MMMM Do YYYY, h:mm:ss a');
+        }
     },
 
-},{timestamps: true});
+},{ timestamps: true});
 
 
-module.exports = mongoose.model('post', postModel);
+module.exports = mongoose.model('post', postSchema);

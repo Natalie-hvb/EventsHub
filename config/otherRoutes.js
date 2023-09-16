@@ -6,8 +6,6 @@ const eventController = require('../controllers/eventController'); // Import eve
 
 const route = express.Router();
 
-route.get('/', mainController.homePage);
-
 route.get('/user/:id', userController.getUserById); // Add user route
 route.get('/business/:id', businessController.getBusinessById); // Add business route
 route.get('/event/:id', eventController.getEventById); // Add event route

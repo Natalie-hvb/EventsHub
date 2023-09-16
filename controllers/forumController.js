@@ -1,80 +1,102 @@
-const postModel = require('../models/postModel'); // Import Post model
-const commentModel = require('../models/commentModel'); // Import Comment model
+const post = require('../models/postModel');
+const commentModel = require('../models/commentModel');
 
-const getPost = (req, res) => {
-  postModel
-    .find()
-    .populate('comments', '_id comment')
+const getForum = (req, res) => {
+  post.find()
+    .populate("comments", "user_id comment")
+    .populate("user_id", "name")
+    .populate({
+      path: 'comments',
+      model: 'comment',
+      populate: {
+        path: 'user_id',
+        model: 'user'
+      }
+    })
     .sort({ createdAt: -1 })
     .then(result => {
-      res.render('forum', {
-        posts: result
-      });
+      res.render('forum', { posts: result, title: 'Posts' });
     })
+    .catch(err => {
+      console.log(err);
+      // res.status(500).render('404', { message: 'An error occurred while fetching posts.' });
+    });
+};
+
+const createNewPost = (req, res) => {
+  let newPost = new post({
+    title: req.body.title, 
+    message: req.body.message, 
+    user_id: res.locals.id
+  });
+  newPost.save()
+    .then(() => { res.redirect('/forum'); })
     .catch(err => console.log(err));
 };
 
-const createPost = (req, res) => {
-  const { message, user, comments } = req.body; // Extract post data from the request
-
-  // Create a new post document
-  const newPost = new postModel({
-    message,
-    user,
-    comments,
-  });
-
-  newPost
-    .save()
-    .then(() => {
-      res.redirect('/forum'); // Redirect to the forum page after successfully creating the post
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('An error occurred while creating the post.');
-    });
+const getFullPost = (req, res) => {
+  post.findById(req.params.id)
+    .then(result => res.render('fullPost', { post: result }))
+    .catch(err => console.log(err))
 };
 
-const addComment = (req, res) => {
-  if (req.body.comment === '') {
-    res.redirect('/');
-  } else {
-    const comment = new commentModel(req.body);
-    comment
-      .save()
-      .then(savedComment => {
-        updatePostData(req.params.id, savedComment._id, res);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).send('An error occurred while adding the comment.');
-      });
+const deletePost = (req, res) => {
+  post.findByIdAndRemove(req.params.id)
+    .then(() => res.redirect('/forum'))
+    .catch(err => console.log(err))
+};
+
+const getEditPage = (req, res) => {
+  post.findById(req.params.id)
+    .then((result) => res.render('editPost', { post: result }))
+    .catch(err => console.log(err))
+};
+
+const updatePost = (req, res) => {
+  post.findByIdAndUpdate(req.params.id, req.body)
+    .then(result => res.redirect(`/post/${result._id}`))
+    .catch(err => console.log(err))
+};
+
+const addComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const postToComment = await post.findById(id);
+
+    if (!postToComment) {
+      return res.status(404).send('Post not found');
+    }
+
+    const comment = new commentModel({
+      comment: req.body.comment,
+      post_id: req.params.id,
+      user_id: res.locals.id
+    });
+
+    await comment.save();
+    postToComment.comments.push(comment._id);
+    await postToComment.save();
+
+    res.redirect('/forum');
+  } catch (err) {
+    console.error(err);
+    res.status(500).render('error', { message: 'An error occurred while adding a comment.' });
   }
 };
 
-function updatePostData(postId, commentId, res) {
-  postModel
-    .findById(postId)
-    .then(post => {
-      post.comments.push(commentId);
-      post
-        .save()
-        .then(() => {
-          res.redirect('/forum');
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).send('An error occurred while updating the post data.');
-        });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send('An error occurred while finding the post.');
-    });
-}
-
 module.exports = {
-  getPost,
-  createPost,
-  addComment,
+  getForum,
+  createNewPost,
+  getFullPost,
+  deletePost,
+  getEditPage,
+  updatePost,
+  addComment
+};
+
+
+
+// 404 page
+const getErrorPage = (req, res) => {
+  res.status(404).render('404', { title: '404' });
 };
