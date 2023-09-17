@@ -29,5 +29,7 @@ router.post('/post/edit/:id', forumController.updatePost);
 
 router.post('/add-comment/:postId/:userId', forumController.addComment) //Add new comment
 
+router.get('/contact', authController.contact_get)
+
 
 module.exports = router;

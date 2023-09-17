@@ -22,19 +22,46 @@
 
   .better-together-wrapper {
     margin: auto;
-    border: 2px solid blue;
     height: 100%;
     width: 100%;
     background-image: url("../public/img/signup-img.jpeg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
 
   .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* Adjust the shadow values as needed */
-}
+  }
+  label{
+    color: white;
+      font-size: 20px;
+      text-shadow:
+          0.05em 0 black,
+          0 0.05em black,
+          -0.05em 0 black,
+          0 -0.05em black,
+          -0.05em -0.05em black,
+          -0.05em 0.05em black,
+          0.05em -0.05em black,
+          0.05em 0.05em black;
+
+  }
+  .sign{
+    color: white;
+    text-shadow:
+          0.05em 0 black,
+          0 0.05em black,
+          -0.05em 0 black,
+          0 -0.05em black,
+          -0.05em -0.05em black,
+          -0.05em 0.05em black,
+          0.05em -0.05em black,
+          0.05em 0.05em black;
+  }
 
 </style>
 
@@ -55,7 +82,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <form action="/signup" class="border p-4 rounded bg-light-opacity" method="post">
-          <h2 class="mb-4">Sign up</h2>
+          <h2 class="sign mb-4">Sign up</h2>
   
           <div class="form-group">
             <label for="username" class="required">Create Username:</label>

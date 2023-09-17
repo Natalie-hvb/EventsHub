@@ -1,26 +1,62 @@
 <%- include('partials/head'); -%>
+<style>
+    body {
+      background: linear-gradient(to bottom, white, black);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family:Arial;  
+      color:whitesmoke;
+    }
+    #container{
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        background-image: url("../public/img/mic-full-message.jpg");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 30px;
+    }
+    /* .custom{
+        margin: auto;
+        color:whitesmoke;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        padding: 20px 25px;
+        width: 70%;
+    } */
+    span{
+        font-style: italic;
+    }
+</style>
 
-<a href="/forum" class="btn btn-light">Back</a>
-    <main class="d-flex align-items-center justify-content-center">
-        <div class="card mb-4" style="width: 50%;">
+<div id="container">
+    <a href="/forum" class="btn btn-outline-dark">Back</a>
+    <main class="d-flex align-items-center justify-content-center custom">
+        <div class="card mb-4" style="width: 50%; background: rgba(0, 0, 0, 0.7);">
             <div class="card-header">
-                <h3 class="card-title"><%= post.title %></h3>
+                <h3 class="card-title text-light"><%= post.title %></h3>
             </div>
             <div class="card-body">
-                <p class="card-text"><%= post.message %></p>
+                <p class="card-text text-light"><%= post.message %></p>
             </div>
             <div class="card-body">
-                <p class="card-text"><%= post.createdAt %></p>
+                <span class="card-text text-light"><%= post.created_at %></span>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <% if (post.user_id._id.toString() === user.id.toString()) { %>
                     <form action="/delete-post/<%= post._id %>" method="post">
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-outline-light">Delete</button>
                     </form>
-                    <a href="/post/edit/<%= post._id %>" class="btn btn-primary">Edit Post</a>
+                    <a href="/post/edit/<%= post._id %>" class="btn btn-light">Edit Post</a>
                 <% } %>
             </div>
         </div>
     </main>
+</div>
+
+    
 
 <%- include('./partials/footer'); -%>

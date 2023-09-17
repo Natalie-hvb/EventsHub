@@ -22,7 +22,7 @@ const getForum = (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      // res.status(500).render('404', { message: 'An error occurred while fetching posts.' });
+      res.status(500).render('404', { message: 'An error occurred while fetching posts.' });
     });
 };
 
@@ -55,12 +55,9 @@ const createNewPost = async (req, res) => {
     res.redirect('/forum');
   } catch (err) {
     console.error(err);
-    // res.status(500).render('error', { message: 'An error occurred while creating a new post.' });
+    res.status(500).render('404', { message: 'An error occurred while creating a new post.' });
   }
 };
-
-
-
 
 const getFullPost = (req, res) => {
   post.findById(req.params.id)
@@ -108,7 +105,7 @@ const addComment = async (req, res) => {
     res.redirect('/forum');
   } catch (err) {
     console.error(err);
-    res.status(500).render('error', { message: 'An error occurred while adding a comment.' });
+    res.status(500).render('404', { message: 'An error occurred while adding a comment.' });
   }
 };
 

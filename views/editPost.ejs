@@ -1,14 +1,53 @@
-<h3>Edit the Post</h3>
-            <div class="card mb-4" style="width: 500px;">
-                <form action="/post/edit/<%= post._id %>" method="post">
-                    <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" class="form-control" name="title" value="<%= post.title %>">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" id="message" name="message"><%= post.message %></textarea>
-                    </div>
-                    <button>Submit</button>
-                </form>
+<%- include('partials/head'); -%>
+<style>
+    body {
+      background: linear-gradient(to bottom, white, black);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family:Arial;  
+      color:whitesmoke;
+    }
+    main {
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        background-image: url("/public/img/mic-full-message.jpg");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 30px;
+    }
+    .custom{
+        margin: auto;
+        color:whitesmoke;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        padding: 20px 25px;
+        width: 70%;
+    }
+    button{
+        margin: 10px;
+    }
+</style>
+
+
+<main>
+    <h3>Edit the Post</h3>
+    <div class="custom" style="width: 500px;">
+        <form action="/post/edit/<%= post._id %>" method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" name="title" value="<%= post.title %>">
             </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message"><%= post.message %></textarea>
+            </div>
+            <button class="btn btn-outline-light">Submit</button>
+        </form>
+    </div>
+</main>
+
+<%- include('./partials/footer'); -%>

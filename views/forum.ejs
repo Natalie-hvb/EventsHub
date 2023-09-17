@@ -1,42 +1,214 @@
 <%- include('partials/head'); -%>
+<style>
+    body {
+      background: linear-gradient(to bottom, white, black);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family:Arial;  
+      color:whitesmoke;
 
-<div>
-    <h1>Hi <%= user.name %></h1>
-  </div>
+    }
+    #forum-container{
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        background-image: url("../public/img/mic-img.jpg");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    #hello-user{
+        width: 70%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 6px;
+        margin-bottom: 20px;
+        border: none !important;
+    }
+    form{
+        margin: auto;
+        color:whitesmoke;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        padding: 20px 25px;
+    }
+    input{
+        width: 100%;
+        margin: 10px 0;
+        border-radius: 5px;
+        padding: 15px 18px;
+        box-sizing: border-box;
+    }
+    textarea{
+        width: 100%;
+        margin: 5px 0;
+        border-radius: 5px;
+        padding: 15px 18px;
+        box-sizing: border-box;
+    } 
+    button {
+        background-color: #030804;
+        color: white;
+        padding: 14px 20px;
+        border-radius: 5px;
+        margin: 7px 0;
+        width: 40%;
+        font-size: 18px;
+    }
+    button:hover {
+        opacity: 0.6;
+        cursor: pointer;
+    }
+    .button{
+        display: flex;
+        justify-content: center;
+    }
+    #form-message{
+        width:80%;
+    }
+    /* message input style */
+    .forum-output{
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(11, 15, 13, 0.582);
+        display: block;
+        margin: 20px 40px 0px 0px;
+        padding-left: 30px;
+        border-left: 10px solid black;
+        width: 100%;
+    }
+    h5{
+        font-weight: bold;
+        text-decoration: underline;
+        padding-top: 10px;
+    }
+    a{
+        color: rgb(202, 202, 227);
+        text-decoration: none;
+    }
+    a:hover {
+        color: red;
+        text-decoration: underline;
+        cursor:pointer;
+    }
+    #link-and-span{
+        display: flex;
+        justify-content: space-between;
+        padding-right: 10px;
+    }
 
-  <form action="/new-post/<%= userId %>" method="post" onsubmit="return validateForm()">
-    <input type="text" id="title" name="title"  placeholder="Name" maxlength="15">
-    <br/><br/>
-    <textarea name="message" id="message"  maxlength="40" placeholder="Message"></textarea>
-    <button>Post a message</button>
-</form>
+    /* comment style */
+    #comments{
+        width: fit-content;
+        border: none !important;
+        padding: 5px 10px;
+    }
+    span{
+        font-style: italic;
+        font-size: 0.8rem;
+    }
+    #output img{
+        height: 40px;
+        margin: 10px;
+    }
+    .output-icon{
+        display: flex;
+    }
+    #form-comment{
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+    #right-side-placement{
+        margin: 10px 40px 0px 0px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    #form-comment-form{
+        height: 80px;
+        display: flex;
+    }
+    #form-comment-form input{
+        height: 40px;
+        margin: auto;
+    }
+    #form-comment button{
+        width: fit-content;
+        display: flex;
+        margin: auto;
+        padding: 5px 10px;
+        margin-left: 20px;
+    }
 
-<div id="output" class="posts content">
-    <% if(posts.length > 0) {%>
-        <% for (let i = 0; i < posts.length; i++) { %>
-            <div>
-                <h5><%= posts[i].title%></h5>
-                <p><%= posts[i].message.slice(0, 20) %></p>
-                <a href="/post/<%= posts[i]._id %>">See more..</a>
-                <h6>written by: <%= posts[i].user_id.name %> on: <%= posts[i].created_at %></h6>
-                <div>
-                    <form action="/add-comment/<%=posts[i]._id%>/<%= userId %>" method="post">
-                      <input name="comment" placeholder="write your comment" >
-                      <button>Send</button> 
-                    </form>
+</style>
+
+<div id="forum-container">
+    <% if (user.id) { %>
+        <div class="forum-output" id="hello-user">
+            <h1>Hello <%= user.name %></h1>
+            <p>Would you like to leave few words about your experience?</p>
+        </div>
+        <form id="form-message" action="/new-post/<%= userId %>" method="post" onsubmit="return validateForm()">
+            <input type="text" id="title" name="title"  placeholder="Title" maxlength="20">
+            <textarea name="message" id="message"  maxlength="150" placeholder="Message"></textarea>
+            <div class="button">
+                <button>Post a message</button>
+            </div>
+        </form>
+        
+        <div id="output" class="posts content">
+            <% if(posts.length > 0) {%>
+                <% for (let i = 0; i < posts.length; i++) { %>
+                    <div class="output-icon">
+                        <img src="../public/img/icon-message.jpg" alt="message-icon">
+                        <div class="forum-output">
+                            <h5><%= posts[i].title%></h5>
+                            <p><%= posts[i].message.slice(0, 50) %></p>
+                            <div id="link-and-span">
+                                <a href="/post/<%= posts[i]._id %>">See more..</a>
+                                <span>written by: <%= posts[i].user_id.name %> on: <%= posts[i].created_at %></span>
+                            </div>
+                        </div>
+                    </div>
                     <div>
+                        <div id="right-side-placement">
+                            <div id="form-comment">
+                                <form id="form-comment-form" action="/add-comment/<%=posts[i]._id%>/<%= userId %>" method="post">
+                                    <input name="comment" placeholder="Write your comment">
+                                    <div class="button">
+                                      <button>Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <% if(posts[i].comments.length > 0) {%>
                             <% posts[i].comments.forEach(comment =>{ %>
-                                <div>
-                                    <h6>written by: <%= comment.user_id.name %> on: <%= posts[i].created_at %></h6>
-                                    <h4><%= comment.comment %></h4>
+                                <div class="output-icon">
+                                    <img src="../public/img/icon-comment.jpg" alt="comment-icon">
+                                    <div  class="forum-output" id="comments">
+                                        <p><%= comment.comment %></p>
+                                        <span>written by: <%= comment.user_id.name %> on: <%= posts[i].created_at %></span>
+                                    </div>
                                 </div>
+                                
                             <% }) %> 
                         <% } %>
+                        
                     </div>
-                  </div>
-            </div>
-        <% } %>
+                <% } %>
+            <% } %>
+        </div>
+    <% } else {%>
+    <div id="welcome-non-user">
+        <h3> Welcome to the EventsHub Forum</h3>
+        <p>Please enjoy reading our latest news and reviews, but if you would like to write a question/post or write a comments, you would need to Sign Up first</p>
+        <a class="btn btn-primary" href="/signup">Sign up</a>
+    </div>
     <% } %>
 </div>
 
