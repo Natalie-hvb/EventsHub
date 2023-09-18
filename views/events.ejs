@@ -1,3 +1,91 @@
 <%- include("./partials/head.ejs") %>
 
-<%- include('./partials/footer'); -%>
+<div class="container">
+    <div class="filters-container">
+        <!-- Filter options -->
+        <div class="filters">
+            <!-- Category filter -->
+            <label for="category">Category:</label>
+            <select id="category">
+                <option value="">All</option>
+                <option value="Category 1">Category 1</option>
+                <option value="Category 2">Category 2</option>
+                <!-- Add more category options as needed -->
+            </select>
+
+            <!-- Location filter -->
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="">All</option>
+                <option value="Location 1">Location 1</option>
+                <option value="Location 2">Location 2</option>
+                <!-- Add more location options as needed -->
+            </select>
+
+            <!-- Date range filter -->
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate">
+
+            <!-- Filter button -->
+            <button id="filterButton">Filter</button>
+        </div>
+    </div>
+
+    <div class="event-listings">
+        <!-- Event listings -->
+        <ul id="eventList">
+            <% events.forEach((event) => { %>
+            <li>
+                <a href="/events/<%= event.id %>"><%= event.title %></a>
+                <p>Date: <%= event.date %></p>
+                <p>Location: <%= event.location %></p>
+                <p>Category: <%= event.category %></p>
+            </li>
+            <% }); %>
+        </ul>
+
+        <!-- "Add Event" button -->
+        <a href="/events/add" class="add-event-button">Add Event</a>
+    </div>
+</div>
+
+<%- include('./partials/footer'); %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButton = document.getElementById('filterButton');
+
+        filterButton.addEventListener('click', () => {
+            // Get filter criteria
+            const category = document.getElementById('category').value;
+            const location = document.getElementById('location').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            // Send AJAX request to the server with filter criteria
+            fetch(`/events/filter?category=${category}&location=${location}&startDate=${startDate}&endDate=${endDate}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Update event listings with filtered data
+                const eventList = document.getElementById('eventList');
+                eventList.innerHTML = ''; // Clear existing listings
+
+                data.events.forEach((event) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <a href="/events/${event.id}">${event.title}</a>
+                    <p>Date: ${event.date}</p>
+                    <p>Location: ${event.location}</p>
+                    <p>Category: ${event.category}</p>
+                `;
+                eventList.appendChild(listItem);
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>

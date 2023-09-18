@@ -40,7 +40,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="/profile/<%= user._id %>" class="nav-link">
-                        <img src="<%= user.profileImageUrl || 'profile.png' %>" alt="Profile Picture" id="profile-pic" class="rounded-circle" width="40" height="40">
+                        <img src="<%= user.profileImageUrl || '/profile.png' %>" alt="Profile Picture" id="profile-pic" class="rounded-circle" width="40" height="40">
                     </a>
                 </li>
             <% } else { %>

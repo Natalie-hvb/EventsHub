@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const eventController = require("../controllers/eventController")
 const mainController = require('../controllers/mainController');
 const authController = require('../controllers/authController');
 const forumController = require('../controllers/forumController')
@@ -29,6 +30,16 @@ router.get('/post/edit/:id', forumController.getEditPage);
 router.post('/post/edit/:id', forumController.updatePost);
 
 router.post('/add-comment/:postId/:userId', forumController.addComment) //Add new comment
+
+//Events Routes
+
+router.get('/events', eventController.getEventsPage);
+router.post('/events/filter', eventController.filterEvents);
+
+router.get('/events/add', eventController.getAddEventForm);
+router.post('/events/add', eventController.addEvent);
+
+router.get('/events/:id', eventController.getEventDetails);
 
 
 module.exports = router;

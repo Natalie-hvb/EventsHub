@@ -4,10 +4,9 @@ const userController = require('../controllers/userController'); // Import user 
 const businessController = require('../controllers/businessController'); // Import business controller
 const eventController = require('../controllers/eventController'); // Import event controller
 
-const route = express.Router();
+const router = express.Router();
 
-route.get('/user/:id', userController.getUserById); // Add user route
-route.get('/business/:id', businessController.getBusinessById); // Add business route
-route.get('/event/:id', eventController.getEventById); // Add event route
+router.get('/user/:id', userController.getUserById); // Add user router
+router.get('/business/:id', businessController.getBusinessById); // Add business router
 
-module.exports = route;
+module.exports = router;

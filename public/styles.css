@@ -192,3 +192,82 @@ body, h1, h2, p {
   border-radius: 7px;
   font-size: 16px;
 }
+
+
+/* Container for filters and event listings */
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Filters container on the left */
+.filters-container {
+  flex: 1;
+  padding-right: 20px; /* Create space between filters and event listings */
+}
+
+/* Filter options */
+.filters {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filters label,
+.filters select,
+.filters input[type="date"],
+.filters button {
+  margin: 0;
+}
+
+.filters label {
+  font-weight: bold;
+}
+
+.filters select,
+.filters input[type="date"],
+.filters button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Event listings on the right */
+.event-listings {
+  flex: 2;
+}
+
+/* Event listings styles (same as before) */
+#eventList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#eventList li {
+  margin: 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+#eventList a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+/* "Add Event" button (same as before) */
+.add-event-button {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}

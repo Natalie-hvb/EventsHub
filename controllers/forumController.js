@@ -64,7 +64,7 @@ const createNewPost = async (req, res) => {
 
 const getFullPost = (req, res) => {
   post.findById(req.params.id)
-    .then(result => res.render('fullPost', { post: result }))
+    .then(result => res.render('fullPost', { post: result, title: post.title}))
     .catch(err => console.log(err))
 };
 
@@ -76,7 +76,7 @@ const deletePost = (req, res) => {
 
 const getEditPage = (req, res) => {
   post.findById(req.params.id)
-    .then((result) => res.render('editPost', { post: result }))
+    .then((result) => res.render('editPost', { post: result, title: post.title}))
     .catch(err => console.log(err))
 };
 

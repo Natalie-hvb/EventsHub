@@ -17,6 +17,21 @@ const eventSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    image: {
+        type: String, // Store the file path or URL to the uploaded image
+    },
+    minAge: {
+        type: Number,
+    },
+    category: {
+        type: String,
+        enum: ['Concert', 'Art Exhibition', 'Party', 'Other'], // Add more categories as needed
+    },
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Assuming you have a 'User' model
+        required: true
+    }
 });
 
 eventSchema.index({ title: 'text' }); // Enable text search on the 'title' field
