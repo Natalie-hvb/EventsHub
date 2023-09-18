@@ -4,11 +4,10 @@ const router = express.Router();
 const mainController = require('../controllers/mainController');
 const authController = require('../controllers/authController');
 const forumController = require('../controllers/forumController')
-const { requireAuth, checkUser } = require('../middleware/authMiddleware');
+const auth = require('../middleware/authMiddleware');
 
 // routes
-router.get('*', checkUser);
-
+router.get('*', auth.checkUser);
 router.get('/', mainController.homePage);
 
 router.get('/signup', authController.signup_get);
@@ -19,8 +18,9 @@ router.get('/logout', authController.logout_get);
 
 //Forum Routes
 
-router.get('/forum', forumController.getForum);
-router.post('/new-post', forumController.createNewPost);
+router.get('/forum', auth.requireAuth, forumController.getForum);
+router.post('/new-post/:id', auth.requireAuth, forumController.createNewPost);
+
 
 router.get('/post/:id', forumController.getFullPost);
 router.post('/delete-post/:id', forumController.deletePost);
@@ -28,7 +28,7 @@ router.post('/delete-post/:id', forumController.deletePost);
 router.get('/post/edit/:id', forumController.getEditPage);
 router.post('/post/edit/:id', forumController.updatePost);
 
-router.post('/add-comment/:id', forumController.addComment)
+router.post('/add-comment/:postId/:userId', forumController.addComment) //Add new comment
 
 
 module.exports = router;

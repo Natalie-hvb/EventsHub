@@ -1,9 +1,11 @@
 const post = require('../models/postModel');
 const commentModel = require('../models/commentModel');
+const userModel = require('../models/User')
+
 
 const getForum = (req, res) => {
   post.find()
-    .populate("comments", "user_id comment")
+    // .populate("comments", "_id comment user_id")
     .populate("user_id", "name")
     .populate({
       path: 'comments',
@@ -15,7 +17,8 @@ const getForum = (req, res) => {
     })
     .sort({ createdAt: -1 })
     .then(result => {
-      res.render('forum', { posts: result, title: 'Posts' });
+      // console.log(result[1].comments)
+      res.render('forum', { posts: result, title: 'Posts', userId: res.locals.userId }); 
     })
     .catch(err => {
       console.log(err);
@@ -23,16 +26,41 @@ const getForum = (req, res) => {
     });
 };
 
-const createNewPost = (req, res) => {
-  let newPost = new post({
-    title: req.body.title, 
-    message: req.body.message, 
-    user_id: res.locals.id
-  });
-  newPost.save()
-    .then(() => { res.redirect('/forum'); })
-    .catch(err => console.log(err));
+
+const createNewPost = async (req, res) => {
+  try {
+    const { title, message } = req.body;
+    const userId = req.params.id; // Ensure userId is correctly set by middleware
+
+    // Check if the user exists
+    const postedUser = await userModel.findById(userId);
+
+    // if (!postedUser) {
+    //   return res.status(404).render('error', { message: 'User not found.' });
+    // }
+
+    const newPost = new post({
+      title,
+      message,
+      user_id: userId,
+    });
+
+    await newPost.save();
+
+    // Update the user's posts array
+    postedUser.post.push(newPost._id);
+    console.log(postedUser)
+    await postedUser.save();
+
+    res.redirect('/forum');
+  } catch (err) {
+    console.error(err);
+    // res.status(500).render('error', { message: 'An error occurred while creating a new post.' });
+  }
 };
+
+
+
 
 const getFullPost = (req, res) => {
   post.findById(req.params.id)
@@ -60,8 +88,8 @@ const updatePost = (req, res) => {
 
 const addComment = async (req, res) => {
   try {
-    const { id } = req.params;
-    const postToComment = await post.findById(id);
+    const { postId, userId } = req.params;
+    const postToComment = await post.findById(postId);
 
     if (!postToComment) {
       return res.status(404).send('Post not found');
@@ -69,8 +97,8 @@ const addComment = async (req, res) => {
 
     const comment = new commentModel({
       comment: req.body.comment,
-      post_id: req.params.id,
-      user_id: res.locals.id
+      post_id: postId,
+      user_id: userId
     });
 
     await comment.save();
@@ -84,6 +112,11 @@ const addComment = async (req, res) => {
   }
 };
 
+// 404 page
+const getErrorPage = (req, res) => {
+  res.status(404).render('404', { title: '404' });
+};
+
 module.exports = {
   getForum,
   createNewPost,
@@ -91,12 +124,9 @@ module.exports = {
   deletePost,
   getEditPage,
   updatePost,
-  addComment
+  addComment,
+  getErrorPage
 };
 
 
 
-// 404 page
-const getErrorPage = (req, res) => {
-  res.status(404).render('404', { title: '404' });
-};

@@ -45,11 +45,11 @@ const createToken = (id) => {
 
 // controller actions
 const signup_get = (req, res) => {
-  res.render('signup', {title:"Sign Up"});
+  res.render('signup');
 }
 
 const login_get = (req, res) => {
-  res.render('login', {title:"Login"});
+  res.render('login');
 }
 
 const signup_post = async (req, res) => {

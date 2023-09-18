@@ -4,7 +4,7 @@
     <h1>Hi <%= user.name %></h1>
   </div>
 
-<form action="/new-post" method="post" onsubmit="return validateForm()">
+  <form action="/new-post/<%= userId %>" method="post" onsubmit="return validateForm()">
     <input type="text" id="title" name="title"  placeholder="Name" maxlength="15">
     <br/><br/>
     <textarea name="message" id="message"  maxlength="40" placeholder="Message"></textarea>
@@ -18,9 +18,9 @@
                 <h5><%= posts[i].title%></h5>
                 <p><%= posts[i].message.slice(0, 20) %></p>
                 <a href="/post/<%= posts[i]._id %>">See more..</a>
-                <h6>written by: <%= user.name %> on: <%= posts[i].createdAt %></h6>
+                <h6>written by: <%= posts[i].user_id.name %> on: <%= posts[i].created_at %></h6>
                 <div>
-                    <form action="/add-comment/<%=posts[i]._id%>" method="post">
+                    <form action="/add-comment/<%=posts[i]._id%>/<%= userId %>" method="post">
                       <input name="comment" placeholder="write your comment" >
                       <button>Send</button> 
                     </form>
@@ -28,7 +28,7 @@
                         <% if(posts[i].comments.length > 0) {%>
                             <% posts[i].comments.forEach(comment =>{ %>
                                 <div>
-                                    <h6>written by: <%= comment.name %> on: <%= posts[i].createdAt %></h6>
+                                    <h6>written by: <%= comment.user_id.name %> on: <%= posts[i].created_at %></h6>
                                     <h4><%= comment.comment %></h4>
                                 </div>
                             <% }) %> 
