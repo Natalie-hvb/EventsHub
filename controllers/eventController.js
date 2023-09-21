@@ -1,12 +1,65 @@
 const Event = require('../models/eventModel');
 
+// Define an array of dummy events
+const dummyEvents = [
+    {
+        title: "Natalie's Birthday Party",
+        description: "We are celebrating Natalie's birthday",
+        location: "Rotterdam",
+        date: new Date('2023-10-15'),
+        image: "/img/dummy1.jpg",
+        minAge: 18,
+        category: "Party",
+    },
+    {
+        title: "Art Exhibition: Modern Masters",
+        description: "Explore the works of modern art masters",
+        location: "Amsterdam",
+        date: new Date('2023-11-05'),
+        image: "/img/dummy2.jpg",
+        minAge: 0,
+        category: "Art Exhibition",
+    },
+    {
+        title: "Rock the City: Live Concert",
+        description: "Experience a high-energy rock concert",
+        location: "Berlin",
+        date: new Date('2023-09-20'),
+        image: "/img/dummy3.jpg",
+        minAge: 16,
+        category: "Concert",
+    },
+    {
+        title: "Tech Meetup: Emerging Technologies",
+        description: "Join tech enthusiasts and discover the latest in emerging technologies",
+        location: "London",
+        date: new Date('2023-10-30'),
+        image: "/img/dummy4.jpg",
+        minAge: 0,
+        category: "Other",
+    },
+    {
+        title: "Family Fun Day at the Park",
+        description: "A day of family-friendly activities, games, and picnics",
+        location: "Paris",
+        date: new Date('2023-09-25'),
+        image: "/img/dummy5.jpg",
+        minAge: 0,
+        category: "Other",
+    }
+    // Add more dummy events as needed
+];
+
 exports.getEventsPage = async (req, res) => {
     try {
         // Fetch all events from the database and populate the 'user' field to get user information
         const events = await Event.find().populate('user');
 
+        // Merge the dummy events with the database events
+        const allEvents = [...dummyEvents, ...events];
+
         // Render the events page with the list of events
-        res.render('events', { events, title: "Events" });
+        res.render('events', { events: allEvents, title: "Events" });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

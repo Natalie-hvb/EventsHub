@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const businessController = require("../controllers/businessController")
 const eventController = require("../controllers/eventController")
 const mainController = require('../controllers/mainController');
 const authController = require('../controllers/authController');
@@ -43,5 +44,11 @@ router.post('/events/add', eventController.addEvent);
 
 router.get('/events/:id', eventController.getEventDetails);
 
+//Business Routes
+
+router.get('/businesses', businessController.getBusinessPage);
+router.post('/businesses/filter', businessController.filterBusinesses);
+
+// router.get('/businesses/:id', businessController.getBusinessDetails);
 
 module.exports = router;
