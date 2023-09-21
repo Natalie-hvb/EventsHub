@@ -89,10 +89,40 @@ const logout_get = (req, res) => {
   res.redirect('/');
 }
 
+const contact_get = (req, res) => {
+  res.render('contact', {title: "Contact"});
+}
+
 module.exports = {
   signup_get,
   login_get,
   signup_post,
   login_post,
-  logout_get
+  logout_get,
+  contact_get
 }
+
+
+
+// login in case
+
+// <div class="container mt-5">
+//   <div class="row justify-content-center">
+//     <div class="col-md-6">
+//       <form action="/signup" class="bg-light p-4 rounded">
+//         <h2 class="mb-4">Login</h2>
+//         <div class="mb-3">
+//           <label for="email" class="form-label">Email</label>
+//           <input type="text" name="email" class="form-control" />
+//           <div class="email error text-danger"></div>
+//         </div>
+//         <div class="mb-3">
+//           <label for="password" class="form-label">Password</label>
+//           <input type="password" name="password" class="form-control" />
+//           <div class="password error text-danger"></div>
+//         </div>
+//         <button class="btn btn-primary">Login</button>
+//       </form>
+//     </div>
+//   </div>
+// </div>

@@ -30,11 +30,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/contact">Contacts</a>
             </li>
-            <!-- <form action="/search" method="GET">
-                <input type="text" name="q" placeholder="Search...">
-                <button type="submit" id="searchbar">Search</button>
-            </form> -->
             <% if (user) { %>
+                <!-- <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search...">
+                    <button type="submit" id="searchbar">Search</button>
+                </form> -->
+                <li class="nav-item">
+                    Welcome, <%= user.name %>
+                </li>
                 <li class="nav-item">
                     <a class="btn btn-outline-light" href="/logout">Sign out</a>
                 </li>

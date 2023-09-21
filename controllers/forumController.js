@@ -22,7 +22,7 @@ const getForum = (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      // res.status(500).render('404', { message: 'An error occurred while fetching posts.' });
+      res.status(500).render('404', { message: 'An error occurred while fetching posts.' });
     });
 };
 
@@ -55,16 +55,13 @@ const createNewPost = async (req, res) => {
     res.redirect('/forum');
   } catch (err) {
     console.error(err);
-    // res.status(500).render('error', { message: 'An error occurred while creating a new post.' });
+    res.status(500).render('404', { message: 'An error occurred while creating a new post.' });
   }
 };
 
-
-
-
 const getFullPost = (req, res) => {
   post.findById(req.params.id)
-    .then(result => res.render('fullPost', { post: result, title: post.title}))
+    .then(result => res.render('fullPost', { post: result, title: post.title }))
     .catch(err => console.log(err))
 };
 
@@ -76,7 +73,7 @@ const deletePost = (req, res) => {
 
 const getEditPage = (req, res) => {
   post.findById(req.params.id)
-    .then((result) => res.render('editPost', { post: result, title: post.title}))
+    .then((result) => res.render('editPost', { post: result, title: post.title }))
     .catch(err => console.log(err))
 };
 
@@ -108,7 +105,7 @@ const addComment = async (req, res) => {
     res.redirect('/forum');
   } catch (err) {
     console.error(err);
-    res.status(500).render('error', { message: 'An error occurred while adding a comment.' });
+    res.status(500).render('404', { message: 'An error occurred while adding a comment.' });
   }
 };
 

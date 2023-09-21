@@ -13,8 +13,8 @@ const postSchema = new Schema({
     },
     comments:[
         {
-            type: mongoose.Types.ObjectId,
-            ref: "comment"
+        type: mongoose.Types.ObjectId,
+        ref: "comment"
         }
     ],
     user_id:{

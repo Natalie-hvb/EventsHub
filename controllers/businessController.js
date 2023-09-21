@@ -2,7 +2,7 @@ const Business = require('../models/business');
 
 // Handle requests for a business page by its ID
 exports.getBusinessById = async (req, res) => {
-    const businessId = req.params.id;
+  const businessId = req.params.id;
 
     try {
         const business = await Business.findById(businessId);

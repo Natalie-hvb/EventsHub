@@ -22,12 +22,12 @@ nav a.nav-link {
   color: white;
 }
 
-body{
+/* body{
   margin: 20px 40px;
   font-size: 1.2rem;
   letter-spacing: 1px;
   background: #fafafa;
-}
+} */
 
 nav ul{
   display: flex;
@@ -47,12 +47,11 @@ nav li a{
   letter-spacing: 2px;
 }
 
-form h2{
+/* form h2{
   font-size: 2.4em;
   font-weight: 900;
   margin-bottom: 40px;
 }
-
 form{
   width: 360px;
   margin: 0 auto;
@@ -61,7 +60,6 @@ form{
   border-radius: 10px;
   background: white;
 }
-
 input{
   padding: 10px 12px;
   border-radius: 4px;
@@ -69,11 +67,10 @@ input{
   font-size: 1em;
   width: 100%;
 }
-
 label{
   display: block;
   margin: 20px 0 10px;
-}
+} */
 
 .error{
   color: red;
@@ -88,18 +85,11 @@ footer{
   color: #aaa;
 }
 
+
 /* style for Forum/Edit/FullPost */
 
 /* index styles */
-.posts {
-  display: block;
-  margin: 40px 0;
-  padding-left: 30px;
-  border-left: 6px solid black;
-}
-.posts h5{
-  color: rebeccapurple;
-}
+
 
 /* details styles */
 .details{
@@ -149,10 +139,10 @@ textarea{
 
 /* Banner */
 
-body, h1, h2, p {
+/* body, h1, h2, p {
   margin: 0;
   padding: 0;
-}
+} */
 
 #banner {
   margin-top: 50px;
@@ -195,7 +185,7 @@ body, h1, h2, p {
 
 
 /* Container for filters and event listings */
-.container {
+#filters-container {
   display: flex;
   max-width: 1200px;
   margin: 0 auto;

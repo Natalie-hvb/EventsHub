@@ -1,27 +1,79 @@
 <%- include('partials/head'); -%>
+<style>
+  body {
+      background: linear-gradient(to bottom, white, #BA3B27);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family:Arial;  
+      color:whitesmoke;
+  }
+  .intro{
+    margin: 100px;
+    margin-bottom: 100px;
+  }
+  .card {
+  backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+  }
+  label{
+    color: whitesmoke;
+  }
+  .img-fluid{
+    border-top-left-radius: 1rem; 
+    border-bottom-left-radius: 1rem;
+  }
+  .intro img{
+    width: 300px !important;
+  }
+</style>
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form action="/signup" class="bg-light p-4 rounded">
-        <h2 class="mb-4">Login</h2>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="text" name="email" class="form-control" />
-          <div class="email error text-danger"></div>
+<section class="intro">
+  <div class="bg-image h-100">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-12 col-lg-12 col-xl-10">
+            <div class="card" style="border-radius: 1rem; background-color: rgba(0, 0, 0, 0.5);">
+              <!-- Set the background color to black with some transparency -->
+              <div class="row g-0">
+                <div class="col-md-6 col-xl-4 d-md-block ">
+                  <img
+                    src="/public/img/logo.jpg"
+                    alt="login form"
+                    class="img-fluid"/>
+                </div>
+                <div class="col-md-6 col-xl-6 d-flex align-items-center">
+                  <div class="card-body py-5 px-4 p-md-5">
+                    <form action="/signup">
+                      <h4 class="fw-bold mb-4" style="color: whitesmoke;">Log in to your account</h4>
+                      
+                      <div class="form-outline mb-4">
+                        <label for="email" class="form-label" >Email</label>
+                        <input type="text" name="email" id="form2Example1" class="form-control" />
+                        <div class="email error text-danger"></div>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="form2Example2" class="form-control"/>
+                        <div class="password error text-danger"></div>
+                      </div>
+                      <button class="btn btn-outline-light">Login</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" />
-          <div class="password error text-danger"></div>
-        </div>
-        <button class="btn btn-primary">Login</button>
-      </form>
+      </div>
     </div>
   </div>
-</div>
+</section>
+                 
 
-<%- include('partials/footer'); %>
+
+<%- include('partials/footer'); -%>
 
 <script>
   const form = document.querySelector('form');

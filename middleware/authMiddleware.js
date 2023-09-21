@@ -10,7 +10,7 @@ const requireAuth = (req, res, next) => {
       if (err) {
         console.log(err.message);
         res.redirect('/login');
-        next(err);
+        next(err); // Delete if it causes any errors
       } else {
         res.locals.userId = decodedToken.id;
         // console.log(decodedToken.id)
@@ -19,7 +19,7 @@ const requireAuth = (req, res, next) => {
     });
   } else {
     res.redirect('/login');
-    next();
+    next(); // Delete if it causes any errors
   }
 };
 
@@ -27,35 +27,21 @@ const requireAuth = (req, res, next) => {
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-      jwt.verify(token, 'Developers secret EventsHub', async (err, decodedToken) => {
-          if (err) {
-              res.locals.user = null;
-              next();
-          } else {
-              try {
-                  const user = await User.findById(decodedToken.id);
-                  if (user) {
-                      res.locals.user = user;
-                  } else {
-                      console.log('User not found in database'); // Add this debug log
-                      res.locals.user = null;
-                  }
-                  next();
-              } catch (error) {
-                  console.error(error);
-                  res.locals.user = null;
-                  next();
-              }
-          }
-      });
+    jwt.verify(token, 'Developers secret EventsHub', async (err, decodedToken) => {
+      if (err) {
+        res.locals.user = null;
+        next();
+      } else {
+        let user = await User.findById(decodedToken.id);
+        res.locals.user = user;
+        next();
+      }
+    });
   } else {
-      res.locals.user = null;
-      next();
+    res.locals.user = null;
+    next();
   }
 };
-
-
-
 
 
 module.exports = { requireAuth, checkUser };
