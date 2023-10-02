@@ -1,0 +1,101 @@
+<%- include("./partials/head.ejs") %>
+
+<div class="filters-container-1">
+    <div class="filters-container-2">
+        <!-- Filter options -->
+        <div class="filters">
+            <!-- Location filter -->
+            <label for="location">Location:</label>
+            <select class="location">
+                <option value="">All</option>
+                <option value="Amsterdam">Amsterdam</option>
+                <option value="Rotterdam">Rotterdam</option>
+                <option value="Utrecht">Utrecht</option>
+                <option value="The Hague">The Hague</option>
+                <option value="Eindhoven">Eindhoven</option>
+                <option value="Berlin">Berlin</option>
+                <option value="London">London</option>
+                <option value="Paris">Paris</option>
+                <option value="Other">Other</option>
+                <!-- Add more location options as needed -->
+            </select>
+
+            <!-- Business Size filter -->
+            <label for="size">Size:</label>
+            <select class="size">
+                <option value="">All</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Big">Big</option>
+            </select>
+
+            <!-- Business Category filter -->
+            <label for="category">Category:</label>
+            <select class="category">
+                <option value="">All</option>
+                <option value="Cafe">Cafe</option>
+                <option value="Art Gallery">Art Gallery</option>
+                <option value="Club">Club</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Other">Other</option>
+                <!-- Add more category options as needed -->
+            </select>
+
+            <!-- Filter button -->
+            <button class="filterButton">Filter</button>
+        </div>
+    </div>
+
+    <div class="event-listings">
+        <!-- Business listings -->
+        <ul class="eventList">
+            <% businesses.forEach((business) => { %>
+                <li class="event-item">
+                    <!-- Display the event image on the left -->
+                    <img src="<%= business.image %>" alt="<%= business.name %>" class="event-image">
+                <div class="event-details">
+                    <a href="/businesses/<%= business.id %>"><%= business.name %></a>
+                    <p>Location: <%= business.location %></p>
+                    <p>Size: <%= business.size %></p>
+                </div>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+
+<%- include('./partials/footer'); %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButton = document.querySelector('.filterButton');
+
+        filterButton.addEventListener('click', () => {
+            // Get filter criteria
+            const location = document.querySelector('.location').value;
+            const size = document.querySelector('.size').value;
+
+            // Send AJAX request to the server with filter criteria
+            fetch(`/businesses/filter?location=${location}&size=${size}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Update business listings with filtered data
+                const businessList = document.querySelector('.eventList');
+                businessList.innerHTML = ''; // Clear existing listings
+
+                data.businesses.forEach((business) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <h2>${business.name}</h2>
+                    <p>Location: ${business.location}</p>
+                    <p>Size: ${business.size}</p>
+                    <!-- Add more business details as needed -->
+                `;
+                businessList.appendChild(listItem);
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>

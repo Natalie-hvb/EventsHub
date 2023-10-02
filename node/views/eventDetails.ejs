@@ -1,0 +1,14 @@
+<%- include("./partials/head.ejs") %>
+
+<!-- Display event details -->
+<h1><%= event.title %></h1>
+<p>Date: <%= event.date %></p>
+<p>Location: <%= event.location %></p>
+<p>Category: <%= event.category %></p>
+
+<!-- Add more event details here -->
+
+<a href="/events">Back to Events</a>
+
+
+<%- include('./partials/footer'); %>

@@ -1,0 +1,102 @@
+<%- include('partials/head'); -%>
+<style>
+    body {
+    background: linear-gradient(to bottom, white, black);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  main {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background-image: url("/public/img/two.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+  #developers{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    gap: 20px;
+  }
+  #linkedin{
+    height: 50px;
+  }
+  h1{
+    color: whitesmoke;
+  }
+</style>
+
+<main>
+    <div id="developers" class="container-fluid">
+        <div class="card" style="width: 20rem;">
+            <img src="/public/img/natalie.png" class="card-img-top" alt="Natalie profile"/>
+            <div class="card-body">
+              <h5 class="card-title">Natalie Hernandez</h5>
+              <p class="card-text">I'm a dedicated learner diving into front-end and back-end development. Mastered HTML, CSS, JavaScript; now delving into back-end. Excited for the journey ahead!</p>
+            </div>
+            <ul class="list-group list-group-light list-group-small">
+              <li class="list-group-item px-4">Full Stack Web Developer</li>
+              <li class="list-group-item px-4">Get in touch with me here <a href="https://www.linkedin.com/in/natalie-hernandez-hvb/" class="card-link"><img id="linkedin" src="/public/img/linkedin.png"></a></li>
+            </ul>
+        </div>
+        
+        <div class="card" style="width: 20rem;">
+            <img src="/public/img/Burhan.jpg" class="card-img-top" alt="Chicago Skyscrapers"/>
+            <div class="card-body">
+              <h5 class="card-title">Ahmet Burhan Solmaz</h5>
+              <p class="card-text">Full-stack web developer and graphic designer, transitioned from refugee to coding enthusiast in the Netherlands. Proficient in HTML, CSS, JavaScript, and eager to tackle new challenges in web development.</p>
+            </div>
+            <ul class="list-group list-group-light list-group-small">
+              <li class="list-group-item px-4">Full Stack Developer and Graphic Designer</li>
+              <li class="list-group-item px-4">Get in touch with me here <a href="https://www.linkedin.com/in/ahmet-burhan-solmaz/" class="card-link"><img id="linkedin" src="/public/img/linkedin.png"></a></li>
+        </div>
+    </div>
+    
+    <section class="pb-5 pt-0">
+        <div class="container">
+            <div class="row text-center justify-content-center pt-5">
+                <div class="col-12 col-md-7">
+                    <h1>Contact Us</h1>
+                </div>
+            </div>
+    
+            <div class="row justify-content-center pt-4">
+                <div class="col-12 col-md-7">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <input type="email" class="form-control" placeholder="Subject">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <textarea class="form-control" name="message" rows="3" placeholder="How can we help?"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-outline-light mb-4">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row-100"></div>
+        </div>
+        <div class="container-fluid p-0 pb-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2233.125794425867!2d4.314865660059238!3d52.076466376897905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b7224b6b57b7%3A0xba7d3b4948520d87!2sSpui%2C%20Den%20Haag!5e0!3m2!1sru!2snl!4v1694988506501!5m2!1sru!2snl" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer'); -%>
