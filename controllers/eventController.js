@@ -84,26 +84,30 @@ exports.filterEvents = async (req, res) => {
 
 exports.getAddEventForm = (req, res) => {
     // Render the "Add Event" form
-    res.render('addEvent', { title: "Add Event" });
+    res.render('addEvent', { title: "Add Event"});
 };
 
 exports.addEvent = async (req, res) => {
+    console.log(req.body);
     try {
-        // Check if res.locals.user is defined
-        if (!res.locals.user) {
+        /* // Check if res.locals.user is defined
+        if (!req.params.user || !req.params.user._id) {
             console.error('User data not found.');
             res.status(500).send('User data not found.');
             return;
-        }
+        } */
 
         // Create a new event and save it to the database
         const newEvent = new Event({
             title: req.body.title,
-            date: req.body.date,
+            description: req.body.description,
             location: req.body.location,
+            date: req.body.date,
+            image: req.body.image,
+            minAge: req.body.minAge,
             category: req.body.category,
             // Set the 'user' field to the user ID of the currently logged-in user
-            user: res.locals.user._id // Assuming you have user information in res.locals.user
+            user: req.params.userId // Assuming you have user information in res.locals.user
         });
 
         // Save the new event to the database
