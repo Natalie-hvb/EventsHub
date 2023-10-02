@@ -39,8 +39,8 @@ router.post('/add-comment/:postId/:userId', forumController.addComment) //Add ne
 router.get('/events', eventController.getEventsPage);
 router.post('/events/filter', eventController.filterEvents);
 
-router.get('/events/add', eventController.getAddEventForm);
-router.post('/events/add', eventController.addEvent);
+router.get('/events/add', auth.requireAuth, eventController.getAddEventForm);
+router.post('/events/add/:userId', auth.requireAuth, eventController.addEvent);
 
 router.get('/events/:id', eventController.getEventDetails);
 

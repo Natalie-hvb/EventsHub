@@ -27,7 +27,7 @@ const eventSchema = new mongoose.Schema({
         type: String,
         enum: ['Concert', 'Art Exhibition', 'Party', 'Other'], // Add more categories as needed
     },
-    user_id: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Assuming you have a 'User' model
         required: true
