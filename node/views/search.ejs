@@ -1,0 +1,17 @@
+<%- include("./partials/head.ejs") %>
+
+    <ul>
+        <% results.forEach(result => { %>
+            <li>
+                <% if (result instanceof User) { %>
+                    <a href="/user/<%= result._id %>"><%= result.username %></a> (User)
+                <% } else if (result instanceof Business) { %>
+                    <a href="/business/<%= result._id %>"><%= result.name %></a> (Business)
+                <% } else if (result instanceof Event) { %>
+                    <a href="/event/<%= result._id %>"><%= result.title %></a> (Event)
+                <% } %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <%- include('./partials/footer'); -%>
