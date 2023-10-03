@@ -17,8 +17,9 @@ const getForum = (req, res) => {
     })
     .sort({ createdAt: -1 })
     .then(result => {
+      res.json(result);
       // console.log(result[1].comments)
-      res.render('forum', { posts: result, title: 'Posts', userId: res.locals.userId }); 
+      // res.render('forum', { posts: result, title: 'Posts', userId: res.locals.userId }); 
     })
     .catch(err => {
       console.log(err);
@@ -32,12 +33,7 @@ const createNewPost = async (req, res) => {
     const { title, message } = req.body;
     const userId = req.params.id; // Ensure userId is correctly set by middleware
 
-    // Check if the user exists
     const postedUser = await userModel.findById(userId);
-
-    // if (!postedUser) {
-    //   return res.status(404).render('error', { message: 'User not found.' });
-    // }
 
     const newPost = new post({
       title,
@@ -53,6 +49,7 @@ const createNewPost = async (req, res) => {
     await postedUser.save();
 
     res.redirect('/forum');
+    
   } catch (err) {
     console.error(err);
     res.status(500).render('404', { message: 'An error occurred while creating a new post.' });
@@ -61,7 +58,7 @@ const createNewPost = async (req, res) => {
 
 const getFullPost = (req, res) => {
   post.findById(req.params.id)
-    .then(result => res.render('fullPost', { post: result, title: post.title }))
+    .then(result => res.send({ post: result, title: post.title }))
     .catch(err => console.log(err))
 };
 

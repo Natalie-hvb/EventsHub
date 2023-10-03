@@ -13,7 +13,7 @@ const requireAuth = (req, res, next) => {
         next(err); // Delete if it causes any errors
       } else {
         res.locals.userId = decodedToken.id;
-        // console.log(decodedToken.id)
+        console.log(decodedToken.id)
         next();
       }
     });
@@ -25,7 +25,7 @@ const requireAuth = (req, res, next) => {
 
 // check current user
 const checkUser = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.cookies.token;
   if (token) {
     jwt.verify(token, 'Developers secret EventsHub', async (err, decodedToken) => {
       if (err) {

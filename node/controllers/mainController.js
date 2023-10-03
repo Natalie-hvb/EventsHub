@@ -1,5 +1,8 @@
 const homePage = (req, res) => {
-    res.render('main', {title:"Home", user: req.user});
+    res.send({
+        err: null,
+        title:"Home", 
+        user: req.user});
 }
 
 module.exports = {

@@ -1,0 +1,146 @@
+body {
+background: linear-gradient(to bottom, white, black);
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+font-family:Arial;  
+color:whitesmoke;
+
+}
+#forum-container{
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../../public/img/mic-img.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+#hello-user{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 6px;
+    margin-bottom: 20px;
+    border: none !important;
+}
+form{
+    margin: auto;
+    color:whitesmoke;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 20px 25px;
+}
+input{
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 15px 18px;
+    box-sizing: border-box;
+}
+textarea{
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 5px;
+    padding: 15px 18px;
+    box-sizing: border-box;
+} 
+button {
+    background-color: #030804;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 5px;
+    margin: 7px 0;
+    width: 40%;
+    font-size: 18px;
+}
+button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.button{
+    display: flex;
+    justify-content: center;
+}
+#form-message{
+    width:80%;
+}
+
+/* message input style */
+.forum-output{
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(11, 15, 13, 0.582);
+    display: block;
+    margin: 20px 40px 0px 0px;
+    padding-left: 30px;
+    border-left: 10px solid black;
+    width: 100%;
+}
+h5{
+    font-weight: bold;
+    text-decoration: underline;
+    padding-top: 10px;
+}
+a{
+    color: rgb(202, 202, 227);
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    text-decoration: underline;
+    cursor:pointer;
+}
+#link-and-span{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+/* comment style */
+#comments{
+    width: fit-content;
+    border: none !important;
+    padding: 5px 10px;
+}
+span{
+    font-style: italic;
+    font-size: 0.8rem;
+}
+#output img{
+    height: 40px;
+    margin: 10px;
+}
+.output-icon{
+    display: flex;
+}
+#form-comment{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#right-side-placement {
+    margin: 10px 40px 0px 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#form-comment-form{
+    height: 80px;
+    display: flex;
+}
+#form-comment-form input{
+    height: 40px;
+    margin: auto;
+}
+#form-comment button{
+    width: fit-content;
+    display: flex;
+    margin: auto;
+    padding: 5px 10px;
+    margin-left: 20px;
+}

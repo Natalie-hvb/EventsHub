@@ -45,7 +45,7 @@ const Footer = () => {
 
         <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.09)' }}>
             © 2023 Copyright:
-            <a className="text-reset fw-bold" href="#"> Developers EventsHub</a>
+            <a className="text-reset fw-bold" href="/contact">Developers EventsHub</a>
         </div>
         </footer>
     );

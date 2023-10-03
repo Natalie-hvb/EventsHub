@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import "./Head.css";
 
-function App() {
-    const [user, setUser] = useState(null);
-
-  // Fetch user data using useEffect
-    useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-        .then(res => res.json())
-        .then(data => {
-        // Assuming you want to set the user data in the state
-        setUser(data);
-        });
-    }, []);
+function Head() {
+    const user = null; // Set user to null if not authenticated
 
     return (
         <div>
@@ -38,32 +28,28 @@ function App() {
                             <a className="nav-link" href="/contact">Contacts</a>
                         </li>
                         {user ? (
-                            <React.Fragment>
-                                {/* <form action="/search" method="GET">
-                                <input type="text" name="q" placeholder="Search..." />
-                                <button type="submit" id="searchbar">Search</button>
-                                </form> */}
+                            <>
                                 <li className="nav-item">
                                     Welcome, {user.name}
                                 </li>
                                 <li className="nav-item">
                                     <a className="btn btn-outline-light" href="/logout">Sign out</a>
                                 </li>
-                                <li className="nav-item">
+                            </>
+                        ) : (
+                            <>
+                                <li className="nav-item ml-2">
+                                    <a className="btn btn-outline-light" href="/login">Log in</a>
+                                </li>
+                                <li className="nav-item ml-2">
+                                    <a className="btn btn-primary" href="/signup">Sign up</a>
+                                </li>
+                               {/*  <li className="nav-item">
                                     <a href={`/profile/${user._id}`} className="nav-link">
                                         <img src={user.profileImageUrl || '/img/profile.png'} alt="Profile Logo" id="profile-pic" className="rounded-circle" width="40" height="40" />
                                     </a>
-                                </li>
-                            </React.Fragment>
-                        ) : (
-                        <React.Fragment>
-                            <li className="nav-item ml-2">
-                                <a className="btn btn-outline-light" href="/login">Log in</a>
-                            </li>
-                            <li className="nav-item ml-2">
-                                <a className="btn btn-primary" href="/signup">Sign up</a>
-                            </li>
-                        </React.Fragment>
+                                </li> */}
+                            </>
                         )}
                     </ul>
                 </div>
@@ -74,4 +60,4 @@ function App() {
     );
 }
 
-export default App;
+export default Head;
