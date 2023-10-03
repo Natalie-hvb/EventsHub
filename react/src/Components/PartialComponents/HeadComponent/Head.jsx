@@ -44,6 +44,11 @@ function Head() {
                                 <li className="nav-item ml-2">
                                     <a className="btn btn-primary" href="/signup">Sign up</a>
                                 </li>
+                                <li className="nav-item">
+                                    <a href={`/profile/${user._id}`} className="nav-link">
+                                        <img src={user.profileImageUrl || '/img/profile.png'} alt="Profile Logo" id="profile-pic" className="rounded-circle" width="40" height="40" />
+                                    </a>
+                                </li>
                             </>
                         )}
                     </ul>
