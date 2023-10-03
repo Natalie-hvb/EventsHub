@@ -1,0 +1,29 @@
+body {
+background: linear-gradient(to bottom, white, black);
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+}
+main {
+margin: auto;
+height: 100%;
+width: 100%;
+background-image: url("/public/img/two.jpg");
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+padding-top: 20px;
+padding-bottom: 40px;
+}
+#developers{
+display: flex;
+justify-content: space-around;
+margin-top: 30px;
+gap: 20px;
+}
+#linkedin{
+height: 50px;
+}
+h1{
+color: whitesmoke;
+}
