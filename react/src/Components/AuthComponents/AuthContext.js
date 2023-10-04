@@ -11,24 +11,28 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      const userData = JSON.parse(storedUser);
+      setUser(userData);
     }
     setLoading(false);
   }, []);
 
   const login = async (email, password) => {
+    console.log('Login function called');
+
     try {
-      const response = await axios.post('http://localhost:7000/signup', {
+      const response = await axios.post('http://localhost:7000/login', {
         email,
         password
       });
-      const userData = response.data.user;
+      const userData = response.data.userData;
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
     } catch (error) {
       console.error('Login failed:', error);
     }
   };
+  
 
   const logout = async () => {
     try {

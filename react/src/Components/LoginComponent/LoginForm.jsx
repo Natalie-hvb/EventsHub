@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
-import { useAuth } from '../AuthComponents/AuthContext';
+import { useNavigate } from "react-router-dom";
+// import { useAuth } from '../AuthComponents/AuthContext';
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  // const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
+  const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     setEmailError('');
     setPasswordError('');
@@ -21,13 +24,13 @@ const LoginForm = () => {
 
   
       if (response.data.error) {
-        // Handle API errors
         setEmailError(response.data.error.email);
         setPasswordError(response.data.error.password);
-      } else if (response.data.user) {
-        
-        login(response.data.user);
-        window.location.assign('/');
+      } else if (response.data.userData) {
+        console.log(response.data)
+        localStorage.setItem( 'usertoken', response.data.token )
+        localStorage.setItem( 'user', JSON.stringify(response.data.userData ))
+        navigate('/forum');
       } else {
         
         console.error('Unexpected response format:', response.data);
