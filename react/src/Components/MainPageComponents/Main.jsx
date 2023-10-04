@@ -1,10 +1,17 @@
-import React, { useContext } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../AuthComponents/AuthContext';
 import './Main.css';
 
 function Main() {
-  const { user } = useContext(AuthContext); // Access user state from AuthContext
+    // console.log(user)
+    const [user, setUser] = useState(null);
+    // Check if the user is already logged in 
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+        setUser(JSON.parse(storedUser));
+        }
+    }, []);
 
     return (
         <div>

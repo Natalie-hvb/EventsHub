@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../AuthComponents/AuthContext';
 import "./Head.css";
 
 function Head() {
-    const user = null; // Set user to null if not authenticated
+    const { user } = useContext(AuthContext);
+    const [loggedInUser, setLoggedInUser] = useState(user);
+
+    useEffect(() => {
+        setLoggedInUser(user);
+    }, [user]);
 
     return (
         <div>
@@ -27,10 +33,10 @@ function Head() {
                         <li className="nav-item">
                             <a className="nav-link" href="/contact">Contacts</a>
                         </li>
-                        {user ? (
+                        {loggedInUser ? (
                             <>
                                 <li className="nav-item">
-                                    Welcome, {user.name}
+                                    Welcome, {loggedInUser.name}
                                 </li>
                                 <li className="nav-item">
                                     <a className="btn btn-outline-light" href="/logout">Sign out</a>
@@ -44,18 +50,11 @@ function Head() {
                                 <li className="nav-item ml-2">
                                     <a className="btn btn-primary" href="/signup">Sign up</a>
                                 </li>
-                                {/*  <li className="nav-item">
-                                    <a href={`/profile/${user._id}`} className="nav-link">
-                                        <img src={user.profileImageUrl || '/img/profile.png'} alt="Profile Logo" id="profile-pic" className="rounded-circle" width="40" height="40" />
-                                    </a>
-                                </li> */}
                             </>
                         )}
                     </ul>
                 </div>
             </nav>
-
-            {/* Your content goes here */}
         </div>
     );
 }
