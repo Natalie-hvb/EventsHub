@@ -42,16 +42,13 @@ const SignUpForm = () => {
     });
 
     try {
-      // Make a POST request to your backend API endpoint
+      
       const response = await axios.post('http://localhost:7000/signup', formData);
-
-      // Handle the response from the backend
       if (response.data.errors) {
         setErrors(response.data.errors);
       } else if (response.data.user) {
-        // Successfully signed up
         login(response.data.user);
-        window.location.assign('/'); // Redirect to home page or any other page you want
+        window.location.assign('/'); 
       }
     } catch (err) {
       console.error(err);

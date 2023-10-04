@@ -74,9 +74,13 @@ const login_post = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    console.log(res)
+    // console.log(res)
     // Send a single JSON response containing both token and user data
-    res.status(200).json({ token, user });
+    let userData = {
+      name: user.name,
+      email: user.email
+    }
+    res.status(200).json({ token, userData });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
@@ -86,7 +90,7 @@ const login_post = async (req, res) => {
 
 const logout_get = (req, res) => {
   res.send('token', '', { maxAge: 1 });
-  res.redirect('/');
+  res.redirect('/login');
 }
 
 const contact_get = (req, res) => {

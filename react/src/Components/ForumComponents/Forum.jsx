@@ -47,7 +47,7 @@ function Forum({ user, userId }) {
 
   return (
     <div id="forum-container">
-      {user.id ? (
+      {user ? (
         <div className="forum-output" id="hello-user">
           <h1>Hello {user.name}</h1>
           <p>Would you like to leave few words about your experience?</p>

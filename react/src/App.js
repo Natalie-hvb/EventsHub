@@ -12,7 +12,7 @@ import { useAuth } from './Components/AuthComponents/AuthContext';
 // import Profile from './Profile';
 
 function App() {
-  const { user } = useAuth([]);
+  const { user } = useAuth();
 
   return (
     <div>
