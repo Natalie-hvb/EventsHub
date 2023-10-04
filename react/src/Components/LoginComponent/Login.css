@@ -1,0 +1,25 @@
+body {
+    background: linear-gradient(to bottom, white, #BA3B27);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family:Arial;  
+    color:whitesmoke;
+}
+.intro{
+  margin: 100px;
+  margin-bottom: 100px;
+}
+.card {
+backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+}
+label{
+  color: whitesmoke;
+}
+.img-fluid{
+  border-top-left-radius: 1rem; 
+  border-bottom-left-radius: 1rem;
+}
+.intro img{
+  width: 300px !important;
+}

@@ -1,0 +1,107 @@
+<%- include("./partials/head.ejs") %>
+
+<div class="filters-container-1">
+    <div class="filters-container-2">
+        <!-- Filter options -->
+        <div class="filters">
+            <!-- Category filter -->
+            <label for="category">Category:</label>
+            <select class="category">
+                <option value="">All</option>
+                <option value="Concert">Concert</option>
+                <option value="Art Exhibition">Art Exhibition</option>
+                <option value="Party">Party</option>
+                <option value="Other">Other</option>
+                <!-- Add more category options as needed -->
+            </select>
+
+            <!-- Location filter -->
+            <label for="location">Location:</label>
+            <select class="location">
+                <option value="">All</option>
+                <option value="Amsterdam">Amsterdam</option>
+                <option value="Rotterdam">Rotterdam</option>
+                <option value="Utrecht">Utrecht</option>
+                <option value="The Hague">The Hague</option>
+                <option value="Eindhoven">Eindhoven</option>
+                <option value="Berlin">Berlin</option>
+                <option value="London">London</option>
+                <option value="Paris">Paris</option>
+                <option value="Other">Other</option>
+                <!-- Add more location options as needed -->
+            </select>
+
+            <!-- Date range filter -->
+            <label for="startDate">Start Date:</label>
+            <input type="date" class="startDate">
+            <label for="endDate">End Date:</label>
+            <input type="date" class="endDate">
+
+            <!-- Filter button -->
+            <button class="filterButton">Filter</button>
+        </div>
+    </div>
+
+    <div class="event-listings">
+
+        <!-- Event listings -->
+        <ul class="eventList">
+            <% events.forEach((event) => { %>
+            <li class="event-item">
+                <!-- Display the event image on the left -->
+                <img src="<%= event.image %>" alt="<%= event.title %>" class="event-image">
+        
+                <!-- Event details on the right -->
+                <div class="event-details">
+                    <a href="/events/<%= event.id %>"><%= event.title %></a>
+                    <p>Date: <%= event.date %></p>
+                    <p>Location: <%= event.location %></p>
+                    <p>Category: <%= event.category %></p>
+                </div>
+            </li>
+            <% }); %>
+        </ul>
+
+        <!-- "Add Event" button -->
+        <a href="/events/add" class="add-event-button">Add Event</a>
+    </div>
+</div>
+
+<%- include('./partials/footer'); %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButton = document.querySelector('.filterButton');
+
+        filterButton.addEventListener('click', () => {
+            // Get filter criteria
+            const category = document.querySelector('.category').value;
+            const location = document.querySelector('.location').value;
+            const startDate = document.querySelector('.startDate').value;
+            const endDate = document.querySelector('.endDate').value;
+
+            // Send AJAX request to the server with filter criteria
+            fetch(`/events/filter?category=${category}&location=${location}&startDate=${startDate}&endDate=${endDate}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Update event listings with filtered data
+                const eventList = document.querySelector('.eventList');
+                eventList.innerHTML = ''; // Clear existing listings
+
+                data.events.forEach((event) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <a href="/events/${event.id}">${event.title}</a>
+                    <p>Date: ${event.date}</p>
+                    <p>Location: ${event.location}</p>
+                    <p>Category: ${event.category}</p>
+                `;
+                eventList.appendChild(listItem);
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
