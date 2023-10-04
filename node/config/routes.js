@@ -6,12 +6,13 @@ const eventController = require("../controllers/eventController")
 const mainController = require('../controllers/mainController');
 const authController = require('../controllers/authController');
 const forumController = require('../controllers/forumController')
+const userController = require('../controllers/userController');
 const auth = require('../middleware/authMiddleware');
 
 // routes
-router.get('*', auth.checkUser);
-router.get('/', mainController.homePage);
+// router.get('*', auth.checkUser);
 
+router.get('/', mainController.homePage);
 router.get('/signup', authController.signup_get);
 router.post('/signup', authController.signup_post);
 router.get('/login', authController.login_get);
@@ -50,5 +51,8 @@ router.get('/businesses', businessController.getBusinessPage);
 router.post('/businesses/filter', businessController.filterBusinesses);
 
 // router.get('/businesses/:id', businessController.getBusinessDetails);
+
+//User Routes
+router.get('/user/:id', userController.getUserById); // Add user router
 
 module.exports = router;
