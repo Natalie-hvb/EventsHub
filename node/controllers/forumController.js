@@ -5,7 +5,6 @@ const userModel = require('../models/User')
 
 const getForum = (req, res) => {
   post.find()
-    // .populate("comments", "_id comment user_id")
     .populate("user_id", "name")
     .populate({
       path: 'comments',
@@ -18,8 +17,6 @@ const getForum = (req, res) => {
     .sort({ createdAt: -1 })
     .then(result => {
       res.json(result);
-      // console.log(result[1].comments)
-      // res.render('forum', { posts: result, title: 'Posts', userId: res.locals.userId }); 
     })
     .catch(err => {
       console.log(err);
@@ -31,7 +28,7 @@ const getForum = (req, res) => {
 const createNewPost = async (req, res) => {
   try {
     const { title, message } = req.body;
-    const userId = req.params.id; // Ensure userId is correctly set by middleware
+    const userId = req.params.id;
 
     const postedUser = await userModel.findById(userId);
 
@@ -43,7 +40,6 @@ const createNewPost = async (req, res) => {
 
     await newPost.save();
 
-    // Update the user's posts array
     postedUser.post.push(newPost._id);
     console.log(postedUser)
     await postedUser.save();
@@ -56,21 +52,49 @@ const createNewPost = async (req, res) => {
   }
 };
 
-const getFullPost = (req, res) => {
-  post.findById(req.params.id)
-    .then(result => res.send({ post: result, title: post.title }))
-    .catch(err => console.log(err))
+const getFullPost = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    console.log('postId:', postId);
+    const fullPost = await post.findById(postId)
+      .populate('user_id', 'name')
+      .populate({
+        path: 'comments',
+        model: 'comment',
+        populate: {
+          path: 'user_id',
+          model: 'user',
+        },
+      });
+
+    if (!fullPost) {
+      return res.status(404).send('Post not found');
+    }
+
+    res.json(fullPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 };
 
 const deletePost = (req, res) => {
+  console.log(`Deleting post with ID: ${req.params.id}`);
   post.findByIdAndRemove(req.params.id)
-    .then(() => res.redirect('/forum'))
-    .catch(err => console.log(err))
+    .then(() => {
+      console.log('Post deleted successfully');
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      console.error('Error deleting post:', err);
+      res.sendStatus(500);
+    });
 };
+
 
 const getEditPage = (req, res) => {
   post.findById(req.params.id)
-    .then((result) => res.render('editPost', { post: result, title: post.title }))
+    .then((result) => res.send( { post: result, title: post.title }))
     .catch(err => console.log(err))
 };
 
@@ -99,17 +123,111 @@ const addComment = async (req, res) => {
     postToComment.comments.push(comment._id);
     await postToComment.save();
 
-    res.redirect('/forum');
+    res.redirect('/');
   } catch (err) {
     console.error(err);
     res.status(500).render('404', { message: 'An error occurred while adding a comment.' });
   }
 };
 
+const logout_get = (req, res) => {
+  const maxAge = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+  res.cookie('jwt', '', { maxAge, httpOnly: true });
+  // res.redirect('/');
+
+}
+
 // 404 page
 const getErrorPage = (req, res) => {
   res.status(404).render('404', { title: '404' });
 };
+
+const likePost = async (req, res) => {
+  try {
+    // find the post to update the like
+    const likedPost = await post.findById(req.params.postId);
+
+    // Check if the user has already liked the post
+    const userIndex = likedPost.likes.indexOf(req.user.id);
+    if (userIndex === -1) {
+      // If user has not liked the post, add the like
+      likedPost.likes.push(req.user.id);
+      await likedPost.save();
+
+      // You can perform additional actions here, like creating notifications, if necessary
+
+      res.status(200).json(likedPost);
+    } else {
+      // If user has already liked the post, remove the like
+      likedPost.likes.splice(userIndex, 1);
+      await likedPost.save();
+      res.status(200).json(likedPost);
+    }
+  } catch (error) {
+    console.error('Error liking post: ', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Get likes for a post
+const getPostLikes = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const likedPost = await post.findById(postId);
+    res.status(200).json({ likes: likedPost.likes });
+  } catch (error) {
+    console.error('Error fetching post likes: ', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Add like to a post
+const addPostLike = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.params.userId;
+    const likedPost = await post.findById(postId);
+
+    // Check if the user has already liked the post
+    const userIndex = likedPost.likes.indexOf(userId);
+    if (userIndex === -1) {
+      // If user has not liked the post, add the like
+      likedPost.likes.push(userId);
+      await likedPost.save();
+      res.status(200).json({ likes: likedPost.likes });
+    } else {
+      // If user has already liked the post, return existing likes
+      res.status(200).json({ likes: likedPost.likes });
+    }
+  } catch (error) {
+    console.error('Error adding post like: ', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Remove like from a post
+const removePostLike = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.params.userId;
+    const likedPost = await post.findById(postId);
+
+    // Check if the user has already liked the post
+    const userIndex = likedPost.likes.indexOf(userId);
+    if (userIndex !== -1) {
+      // If user has liked the post, remove the like
+      likedPost.likes.splice(userIndex, 1);
+      await likedPost.save();
+    }
+    res.status(200).json({ likes: likedPost.likes });
+  } catch (error) {
+    console.error('Error removing post like: ', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
 
 module.exports = {
   getForum,
@@ -119,7 +237,13 @@ module.exports = {
   getEditPage,
   updatePost,
   addComment,
-  getErrorPage
+  logout_get,
+  getErrorPage,
+  likePost,
+  getPostLikes,
+  addPostLike,
+  removePostLike,
+
 };
 
 

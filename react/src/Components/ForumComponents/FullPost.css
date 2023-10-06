@@ -3,28 +3,52 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    font-family:Arial;  
-    color:whitesmoke;
-  }
-  #container{
-      margin: auto;
-      height: 100%;
-      width: 100%;
-      background-image: url("../../../public/img/mic-full-message.jpg");
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-size: cover;
-      padding: 30px;
-  }
-  /* .custom{
-      margin: auto;
-      color:whitesmoke;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.125);
-      padding: 20px 25px;
-      width: 70%;
-  } */
-  span{
-      font-style: italic;
-  }
+    font-family: Arial;
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url("../../../public/img/mic-full-message.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.full-post {
+    width: 50%;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.full-post h2 {
+    color: whitesmoke;
+}
+
+.full-post p {
+    color: whitesmoke;
+    margin-bottom: 15px;
+}
+
+
+.post-actions button {
+    margin-right: 10px;
+}
+
+#back-to-forum{
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start;
+}

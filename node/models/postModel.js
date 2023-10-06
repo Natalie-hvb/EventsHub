@@ -17,6 +17,12 @@ const postSchema = new Schema({
         ref: "comment"
         }
     ],
+    likes: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: 'user',
+        },
+      ],
     user_id:{
         type: mongoose.Types.ObjectId,
         ref: "user"
@@ -27,7 +33,7 @@ const postSchema = new Schema({
         get: function (createdAt) {
             return moment(createdAt).format('DD.MM.YYYY HH:mm');
         }
-    },
+    }
 
 },{ timestamps: true});
 

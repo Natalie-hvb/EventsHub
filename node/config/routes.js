@@ -21,17 +21,25 @@ router.get('/contact')
 
 //Forum Routes
 
-router.get('/forum', auth.requireAuth, forumController.getForum);
-router.post('/new-post/:id', auth.requireAuth, forumController.createNewPost);
+router.get('/forum', forumController.getForum);
+router.post('/new-post/:id', forumController.createNewPost);
 
 
 router.get('/post/:id', forumController.getFullPost);
-router.post('/delete-post/:id', forumController.deletePost);
+router.delete('/delete-post/:id', forumController.deletePost);
 
 router.get('/post/edit/:id', forumController.getEditPage);
 router.post('/post/edit/:id', forumController.updatePost);
 
 router.post('/add-comment/:postId/:userId', forumController.addComment) //Add new comment
+
+// For posts
+router.post('/like-post/:postId', forumController.likePost);
+
+router.get('/post/:postId/likes', forumController.getPostLikes)
+router.post('/post/:postId/like/:userId', forumController.addPostLike)
+router.delete('/post/:postId/like/:userId', forumController.removePostLike)
+
 
 //Events Routes
 

@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   comments:[{
     type:mongoose.Types.ObjectId,           
     ref:'Comment'                           
-}]
+  }],
 });
 
 
