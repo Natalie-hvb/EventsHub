@@ -54,7 +54,7 @@ const LoginForm = () => {
                 <div className="card" style={{ borderRadius: '1rem', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                   <div className="row g-0 main-content">
                     <div className="col-md-6 col-xl-4 d-md-block">
-                      <img src="/img/logo.jpg" alt="Logo" className="img-fluid"/>
+                      <img src="./img/logo.jpg" alt="Logo" className="img-fluid"/>
                     </div>
                     <div className="col-md-6 col-xl-6 d-flex align-items-center">
                       <div className="card-body py-5 px-4 p-md-5">

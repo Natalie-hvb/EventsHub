@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './SignUp.css';
 import axios from 'axios';
 import './SignUp.css'
-// import { useAuth } from '../AuthComponents/AuthContext';
+import { useAuth } from '../AuthComponents/AuthContext';
 import { useNavigate } from "react-router-dom";
 
 
