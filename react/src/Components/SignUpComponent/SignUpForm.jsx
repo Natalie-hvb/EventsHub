@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './SignUp.css';
 import axios from 'axios';
-import { useAuth } from '../AuthComponents/AuthContext';
+import './SignUp.css'
+// import { useAuth } from '../AuthComponents/AuthContext';
+import { useNavigate } from "react-router-dom";
+
 
 const SignUpForm = () => {
-  const { login } = useAuth();
+  // const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: '',
     name: '',
@@ -42,13 +47,12 @@ const SignUpForm = () => {
     });
 
     try {
-      
       const response = await axios.post('http://localhost:7000/signup', formData);
-      if (response.data.errors) {
+  
+      if (response.data.user) {
+        navigate('/login');
+      } else if (response.data.errors) {
         setErrors(response.data.errors);
-      } else if (response.data.user) {
-        login(response.data.user);
-        window.location.assign('/'); 
       }
     } catch (err) {
       console.error(err);
@@ -57,9 +61,10 @@ const SignUpForm = () => {
 
   return (
     <div className="better-together-wrapper">
-      <div className="login-option text-center mt-4">
+
+      <div className="welcome-non-user">
         <h3>Already have an account?</h3>
-        <a className="btn btn-outline-dark" href="/login">
+        <a className="btn btn-outline-light" href="/login">
           Login
         </a>
       </div>
@@ -76,7 +81,7 @@ const SignUpForm = () => {
           <div className="col-md-6">
             <form
               onSubmit={handleSubmit}
-              className="border p-4 rounded bg-light-opacity"
+              className="border p-4 rounded main bg-light-opacity"
             >
               <h2 className="sign mb-4">Sign up</h2>
 
@@ -122,12 +127,12 @@ const SignUpForm = () => {
                 </div>
 
                 <div className="form-group">
-                <label htmlFor="city" className="required">
+                <label  htmlFor="city" className="required mb-2">
                     City:
                 </label>
                 <select
                     name="city"
-                    className="form-control custom-input"
+                    className="form-control custom-input mb-2"
                     value={formData.city}
                     onChange={handleInputChange}
                 >
@@ -170,7 +175,7 @@ const SignUpForm = () => {
                 </div>
 
               <div className="login-option text-center d-flex justify-content-center mt-4">
-                <button type="submit" className="btn btn-dark text-white">
+                <button type="submit" className="btn btn-outline-light">
                   Sign up
                 </button>
               </div>

@@ -12,7 +12,7 @@ function Head() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-black d-flex justify-content-between">
                 <a className="navbar-brand" href="/">
                     <img src="/img/logo.png" alt="EventsHub Logo" id="logo" />
                 </a>

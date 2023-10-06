@@ -23,9 +23,10 @@ function AuthProvider({ children }) {
     try {
       const response = await axios.post('http://localhost:7000/login', {
         email,
-        password
+        password,
       });
       const userData = response.data.userData;
+      localStorage.setItem( 'usertoken', response.data.token )
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
     } catch (error) {
@@ -38,6 +39,7 @@ function AuthProvider({ children }) {
     try {
       await axios.get('http://localhost:7000/logout');
       localStorage.removeItem('user');
+      localStorage.removeItem( 'usertoken' )
       setUser(null);
     } catch (error) {
       console.error('Logout failed:', error);
