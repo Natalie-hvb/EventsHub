@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Head from './Components/PartialComponents/HeadComponent/Head';
 import Footer from './Components/PartialComponents/FooterComponent/Footer';
@@ -19,10 +19,11 @@ import NotFound from './Components/NotFound';
 
 function App() {
   const { user } = useAuth();
+  
 
   return (
     <div>
-      <Head />
+      <Head   />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/events" element={<Events />} />

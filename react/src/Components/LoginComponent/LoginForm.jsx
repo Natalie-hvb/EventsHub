@@ -30,10 +30,11 @@ const LoginForm = () => {
         console.log(response.data)
         localStorage.setItem( 'usertoken', response.data.token )
         localStorage.setItem( 'user', JSON.stringify(response.data.userData ))
+        navigate('/');
+        // window.location.href = '/'
       } else if (response.data.error) {
         setEmailError(response.data.error.email);
         setPasswordError(response.data.error.password);
-        navigate('/');
         // window.location.href = '/forum';
       } else {
         
