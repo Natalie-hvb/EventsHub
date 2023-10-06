@@ -30,7 +30,15 @@ body {
   }
 
   .text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow:
+    0.03em 0 black,
+    0 0.03em black,
+    -0.03em 0 black,
+    0 -0.03em black,
+    -0.03em -0.03em black,
+    -0.03em 0.03em black,
+    0.03em -0.03em black,
+    0.03em 0.03em black;
   /* Adjust the shadow values as needed */
   }
   label{
@@ -45,7 +53,6 @@ body {
           -0.05em 0.05em black,
           0.05em -0.05em black,
           0.05em 0.05em black;
-
   }
   .sign{
     color: white;
@@ -58,4 +65,31 @@ body {
           -0.05em 0.05em black,
           0.05em -0.05em black,
           0.05em 0.05em black;
+  }
+
+  .welcome-non-user{
+    width: 40%;
+    margin: auto;
+    color:white;
+    backdrop-filter: blur(20px) saturate(100%);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 20px 25px;
+  }
+
+  .welcome-non-user h3{
+    text-shadow:
+          0.05em 0 black,
+          0 0.05em black,
+          -0.05em 0 black,
+          0 -0.05em black,
+          -0.05em -0.05em black,
+          -0.05em 0.05em black,
+          0.05em -0.05em black,
+          0.05em 0.05em black;
+  }
+
+  .main{
+    backdrop-filter: blur(15px) saturate(100%);
+    background: rgba(0, 0, 0, 0.3);
   }

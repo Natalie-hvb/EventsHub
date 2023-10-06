@@ -77,10 +77,11 @@ const login_post = async (req, res) => {
     // console.log(res)
     // Send a single JSON response containing both token and user data
     let userData = {
+      id: user._id,
       name: user.name,
       email: user.email
     }
-    res.status(200).json({ token, userData });
+    res.status(200).send({ token, userData });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
@@ -90,7 +91,7 @@ const login_post = async (req, res) => {
 
 const logout_get = (req, res) => {
   res.send('token', '', { maxAge: 1 });
-  res.redirect('/login');
+  // res.redirect('/login');
 }
 
 const contact_get = (req, res) => {

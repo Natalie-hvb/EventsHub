@@ -10,7 +10,7 @@ const requireAuth = (req, res, next) => {
       if (err) {
         console.log(err.message);
         res.redirect('/login');
-        next(err); // Delete if it causes any errors
+        // next(err);
       } else {
         res.locals.userId = decodedToken.id;
         console.log(decodedToken.id)
@@ -19,7 +19,7 @@ const requireAuth = (req, res, next) => {
     });
   } else {
     res.redirect('/login');
-    next(); // Delete if it causes any errors
+    // next();
   }
 };
 

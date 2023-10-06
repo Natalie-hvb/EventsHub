@@ -18,22 +18,8 @@ function Main() {
             <div className='banner'>
                 <h1 className='slogan'>WHERE PEOPLE MEET</h1>
                 <div className='bannerButtons'>
-                    {!user ? (
-                        <>
-                        <Link to="/signup" className='bannerButton signUp'>
-                            Sign Up
-                        </Link>
-                        <Link to="/login" className='bannerButton login'>
-                            Login
-                        </Link>
-                        </>
-                    ) : (
-                        <Link to="/profile" className='bannerButton'>
-                        Profile
-                        </Link>
-                    )}
                 <Link to="/events" className='bannerButton'>
-                    Top Events
+                    Best Events
                 </Link>
                 </div>
             </div>

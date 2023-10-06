@@ -22,6 +22,12 @@ const commentSchema = new Schema({
             return moment(createdAt).format('DD.MM.YYYY HH:mm');
         }
     },
+    likes: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: 'user',
+        },
+      ],
 },{timestamps: true});
 
 module.exports = mongoose.model('comment', commentSchema);

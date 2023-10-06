@@ -6,7 +6,7 @@ body {
     font-family:Arial;  
     color:whitesmoke;
   }
-  main {
+  #container {
       margin: auto;
       height: 100%;
       width: 100%;
@@ -16,15 +16,21 @@ body {
       background-size: cover;
       padding: 30px;
   }
-  .custom{
+  .edit-post{
       margin: auto;
       color:whitesmoke;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.125);
       padding: 20px 25px;
-      width: 70%;
+      width: 60%;
   }
   button{
       margin: 10px;
+  }
+
+  #backToPost{
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start;
   }
