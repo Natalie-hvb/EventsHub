@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.eventsPage{
+    background-image: url("../../../public/img/eventBackground.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.event-listings {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.eventList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.eventList li {
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.eventList a {
+    text-decoration: none;
+    color: #7c1f7c;
+    font-weight: bold;
+}
+
+.event-item{
+    display: flex;
+    align-items: center;
+    border: 1px solid #212529;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #E8772E;
+}
+
+.event-image{
+    margin-right: 10px;
+    width: 200px;
+    height: auto;
+}
+
+.event-details {
+    flex-grow: 1;
+    color: #000;
+}
+
+.add-event-button {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.add-event-button:hover {
+    background-color: #0056b3;
+}
+

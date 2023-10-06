@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,9 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
   
   const handleSubmit = async (e) => {
     
@@ -51,7 +54,7 @@ const LoginForm = () => {
                 <div className="card" style={{ borderRadius: '1rem', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                   <div className="row g-0 main-content">
                     <div className="col-md-6 col-xl-4 d-md-block">
-                      <img src="/img/logo.jpg" alt="Logo" className="img-fluid"/>
+                      <img src="./img/logo.jpg" alt="Logo" className="img-fluid"/>
                     </div>
                     <div className="col-md-6 col-xl-6 d-flex align-items-center">
                       <div className="card-body py-5 px-4 p-md-5">

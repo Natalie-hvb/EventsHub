@@ -1,25 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const businessController = require("../controllers/businessController")
 const eventController = require("../controllers/eventController")
 const mainController = require('../controllers/mainController');
 const authController = require('../controllers/authController');
 const forumController = require('../controllers/forumController')
-const userController = require('../controllers/userController');
 const auth = require('../middleware/authMiddleware');
 
 // routes
 // router.get('*', auth.checkUser);
 
 router.get('/', mainController.homePage);
-router.get('/signup', authController.signup_get);
+router.get('/signup');
 router.post('/signup', authController.signup_post);
-router.get('/login', authController.login_get);
+router.get('/login');
 router.post('/login', authController.login_post);
 router.get('/logout', authController.logout_get);
 
-router.get('/contact', authController.contact_get)
+router.get('/contact')
 
 //Forum Routes
 
@@ -46,21 +44,9 @@ router.delete('/post/:postId/like/:userId', forumController.removePostLike)
 //Events Routes
 
 router.get('/events', eventController.getEventsPage);
-router.post('/events/filter', eventController.filterEvents);
 
-router.get('/events/add', eventController.getAddEventForm);
-router.post('/events/add/:userId', eventController.addEvent);
+router.post('/events/add', auth.requireAuth, eventController.addEvent);
 
 router.get('/events/:id', eventController.getEventDetails);
-
-//Business Routes
-
-router.get('/businesses', businessController.getBusinessPage);
-router.post('/businesses/filter', businessController.filterBusinesses);
-
-// router.get('/businesses/:id', businessController.getBusinessDetails);
-
-//User Routes
-router.get('/user/:id', userController.getUserById); // Add user router
 
 module.exports = router;
