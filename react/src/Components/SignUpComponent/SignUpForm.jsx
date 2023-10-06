@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignUp.css';
 import axios from 'axios';
 import { useAuth } from '../AuthComponents/AuthContext';
 
 const SignUpForm = () => {
   const { login } = useAuth();
+  useEffect(() => {
+    document.title = 'Sign Up';
+  }, []);
   const [formData, setFormData] = useState({
     username: '',
     name: '',

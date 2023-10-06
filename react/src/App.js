@@ -8,8 +8,10 @@ import Login from './Components/LoginComponent/LoginForm';
 import Logout from './Components/Logout';
 import Contact from './Components/ContactsComponent/Contact';
 import Forum from './Components/ForumComponents/Forum';
+import Events from "./Components/EventsComponents/Events";
 import { useAuth } from './Components/AuthComponents/AuthContext';
-// import Profile from './Profile';
+import AddEvent from './Components/EventsComponents/AddEvent';
+import EventDetails from './Components/EventsComponents/EventDetails';
 
 function App() {
   const { user } = useAuth();
@@ -19,14 +21,14 @@ function App() {
       <Head />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/events/add" element = {<AddEvent />} />
+        <Route path="/forum" element={<Forum user={user} />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/forum" element={<Forum user={user} />} />
-
-        {/*<Route path="/profile" element={<Profile />} /> */}
-        {/* ... other routes ... */}
+        <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
       <Footer />
     </div>

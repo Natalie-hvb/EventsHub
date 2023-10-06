@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,9 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
   
   const handleSubmit = async (e) => {
     

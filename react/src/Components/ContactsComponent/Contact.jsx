@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Contact.css';
 
 function Contact() {
+  useEffect(() => {
+    document.title = 'Contact';
+  }, []);
+
   return (
     <main>
       <div id="developers" className="container-fluid">

@@ -44,14 +44,6 @@ const createToken = (id) => {
 };
 
 // controller actions
-const signup_get = (req, res) => {
-  res.send({title:"Sign Up"});
-}
-
-const login_get = (req, res) => {
-  res.send({title:"Login"});
-}
-
 const signup_post = async (req, res) => {
   let { username, name, surname, city, email, password } = req.body;
 
@@ -89,19 +81,12 @@ const login_post = async (req, res) => {
 
 
 const logout_get = (req, res) => {
-  res.send('token', '', { maxAge: 1 });
-  res.redirect('/login');
-}
-
-const contact_get = (req, res) => {
-  res.send({title: "Contact"});
-}
+  res.clearCookie('token'); // Clear the token cookie
+  res.redirect('/');
+};
 
 module.exports = {
-  signup_get,
-  login_get,
   signup_post,
   login_post,
-  logout_get,
-  contact_get
+  logout_get
 }

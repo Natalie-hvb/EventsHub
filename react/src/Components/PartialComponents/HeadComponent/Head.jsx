@@ -25,9 +25,6 @@ function Head() {
                             <a className="nav-link" href="/events">Events</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/businesses">Businesses</a>
-                        </li>
-                        <li className="nav-item">
                             <a className="nav-link" href="/forum">Forum</a>
                         </li>
                         <li className="nav-item">
