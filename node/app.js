@@ -17,6 +17,16 @@ const corsOptions = {
 
 };
 
+const evOpts = {
+  "origin": [3000, "http://localhost:3000", 'http://localhost:7000/events'],
+  "credentials": true,
+  "methods": "GET, POST",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+
+};
+
+app.use(cors(evOpts));
 app.use(cors(corsOptions));
 app.use(express.static('public'));
 app.use('/public/img', express.static('./public/img'))

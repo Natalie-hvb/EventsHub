@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignUp.css';
 import axios from 'axios';
 import './SignUp.css'
-// import { useAuth } from '../AuthComponents/AuthContext';
+import { useAuth } from '../AuthComponents/AuthContext';
 import { useNavigate } from "react-router-dom";
 
 
 const SignUpForm = () => {
+  const { login } = useAuth();
+  useEffect(() => {
+    document.title = 'Sign Up';
+  }, []);
   // const { login } = useAuth();
   const navigate = useNavigate();
 

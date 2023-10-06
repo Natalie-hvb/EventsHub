@@ -1,8 +1,9 @@
 import React from 'react';
+import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="bg-black text-white mt-3" style={{ borderRadius: '10px' }}>
+        <footer className="bg-black text-white" style={{ borderRadius: '10px' }}>
             <section className="p-1 border-bottom"></section>
 
             <section>

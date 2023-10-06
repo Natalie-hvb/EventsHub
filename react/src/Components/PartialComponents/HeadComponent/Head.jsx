@@ -3,12 +3,16 @@ import { AuthContext } from '../../AuthComponents/AuthContext';
 import "./Head.css";
 
 function Head() {
-    const { user } = useContext(AuthContext);
-    const [loggedInUser, setLoggedInUser] = useState(user);
+    const [loggedInUser, setLoggedInUser] = useState(null);
+    
+    setInterval(() => {
+        const user  = localStorage.getItem('usertoken');
+        setLoggedInUser(user);
+        console.log('object', user)
+    }, 500)
 
     useEffect(() => {
-        setLoggedInUser(user);
-    }, [user]);
+    }, []);
 
     return (
         <div>
@@ -23,9 +27,6 @@ function Head() {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <a className="nav-link" href="/events">Events</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/businesses">Businesses</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/forum">Forum</a>
