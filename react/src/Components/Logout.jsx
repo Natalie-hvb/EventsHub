@@ -14,6 +14,7 @@ const Logout = () =>{
         // Clear the user data from local storage (if you're storing it there)
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('usertoken');
 
         // Redirect to the home page or any other desired page after logout
         navigate('/login');

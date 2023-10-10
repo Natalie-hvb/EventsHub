@@ -34,7 +34,6 @@ const LoginForm = () =>{
       } else if (response.data.error){
         setEmailError(response.data.error.email);
         setPasswordError(response.data.error.password);
-        navigate('/');
         // window.location.href = '/forum';
       } else{
         
