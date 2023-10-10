@@ -4,61 +4,61 @@ import Like from './Like';
 
 import './Forum.css';
 
-function Forum({ user, userId }) {
+function Forum({ user, userId }){
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
   const [commentText, setCommentText] = useState('');
   const [posts, setPosts] = useState([]);
 
-  const getPosts = () => {
+  const getPosts = () =>{
     axios.get('http://localhost:7000/forum')
-      .then(response => {
+      .then(response =>{
         setPosts(response.data);
       })
-      .catch(error => {
+      .catch(error =>{
         console.error('Error fetching messages and comments: ', error);
       });
   };
 
-  useEffect(() => {
+  useEffect(() =>{
     getPosts();
   }, []);
 
-  function validateForm() {
-    if (title === '' || message === '') {
+  function validateForm(){
+    if (title === '' || message === ''){
       alert('Both fields are required');
       return false;
     }
     return true;
   }
 
-  function handlePostSubmission(event) {
+  function handlePostSubmission(event){
     event.preventDefault();
-    if (validateForm()) {
+    if (validateForm()){
       axios.post(`http://localhost:7000/new-post/${user.id}`, {
         title: title,
         message: message
       })
-        .then(response => {
+        .then(response =>{
           getPosts();
           setTitle('');
           setMessage('');
         })
-        .catch(error => {
+        .catch(error =>{
           console.error('Error posting message: ', error);
         });
     }
   }
 
-  const handleCommentSubmission = (postId, comment) => {
+  const handleCommentSubmission = (postId, comment) =>{
     axios.post(`http://localhost:7000/add-comment/${postId}/${user.id}`, {
       comment: comment
     })
-      .then(response => {
+      .then(response =>{
         getPosts();
         setCommentText('');
       })
-      .catch(error => {
+      .catch(error =>{
         console.error('Error posting comment: ', error);
       });
   };
@@ -115,7 +115,7 @@ function Forum({ user, userId }) {
             {user && posts.length > 0 && (
               <div>
                 <div className="card-body">
-                  {posts.map((post) => (
+                  {posts.map((post) =>(
                     <div className="mb-4 separated form-dark" key={post._id}>
                       <div className='one-card mb-4'>
                         <h5 className="card-title mb-3">{post.title}</h5>
@@ -135,7 +135,7 @@ function Forum({ user, userId }) {
                       {post.comments && post.comments.length > 0 && (
                         <div className="mb-3">
                           <h6 className="mb-2">Comments:</h6>
-                          {post.comments.map((comment) => (
+                          {post.comments.map((comment) =>(
                             <div className="mb-3" key={comment._id}>
                               <p className="card-text">{comment.comment}</p>
                               <p className="card-text written">
@@ -147,7 +147,7 @@ function Forum({ user, userId }) {
                       )}
 
                       <div className="mb-3">
-                        <form onSubmit={(e) => {
+                        <form onSubmit={(e) =>{
                           e.preventDefault();
                           handleCommentSubmission(post._id, commentText);
                         }}>

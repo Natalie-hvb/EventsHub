@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotFound = () => {
+const NotFound = () =>{
     return (
         <div className="container d-flex align-items-center justify-content-center" style={{ height: '80vh' }}>
             <div className="text-center">

@@ -6,9 +6,9 @@ import { useAuth } from '../AuthComponents/AuthContext';
 import { useNavigate } from "react-router-dom";
 
 
-const SignUpForm = () => {
+const SignUpForm = () =>{
   const { login } = useAuth();
-  useEffect(() => {
+  useEffect(() =>{
     document.title = 'Sign Up';
   }, []);
   // const { login } = useAuth();
@@ -32,12 +32,12 @@ const SignUpForm = () => {
     password: ''
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) =>{
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>{
     e.preventDefault();
 
     // Reset errors
@@ -50,15 +50,15 @@ const SignUpForm = () => {
       password: ''
     });
 
-    try {
+    try{
       const response = await axios.post('http://localhost:7000/signup', formData);
   
-      if (response.data.user) {
+      if (response.data.user){
         navigate('/login');
-      } else if (response.data.errors) {
+      } else if (response.data.errors){
         setErrors(response.data.errors);
       }
-    } catch (err) {
+    } catch (err){
       console.error(err);
     }
   };
@@ -105,78 +105,78 @@ const SignUpForm = () => {
 
               <div className="form-group">
                 <label htmlFor="name" className="required">
-                    First Name:
+                  First Name:
                 </label>
                 <input
-                    type="text"
-                    name="name"
-                    className="form-control custom-input"
-                    value={formData.name}
-                    onChange={handleInputChange}
+                  type="text"
+                  name="name"
+                  className="form-control custom-input"
+                  value={formData.name}
+                  onChange={handleInputChange}
                 />
                 <div className="name error">{errors.name}</div>
-                </div>
-                <div className="form-group">
+              </div>
+              <div className="form-group">
                 <label htmlFor="surname" className="required">
-                    Last Name:
+                  Last Name:
                 </label>
                 <input
-                    type="text"
-                    name="surname"
-                    className="form-control custom-input"
-                    value={formData.surname}
-                    onChange={handleInputChange}
+                  type="text"
+                  name="surname"
+                  className="form-control custom-input"
+                  value={formData.surname}
+                  onChange={handleInputChange}
                 />
                 <div className="surname error">{errors.surname}</div>
-                </div>
+              </div>
 
-                <div className="form-group">
+              <div className="form-group">
                 <label  htmlFor="city" className="required mb-2">
-                    City:
+                  City:
                 </label>
                 <select
-                    name="city"
-                    className="form-control custom-input mb-2"
-                    value={formData.city}
-                    onChange={handleInputChange}
+                  name="city"
+                  className="form-control custom-input mb-2"
+                  value={formData.city}
+                  onChange={handleInputChange}
                 >
-                    <option value="Amsterdam">Amsterdam</option>
-                    <option value="Rotterdam">Rotterdam</option>
-                    <option value="Utrecht">Utrecht</option>
-                    <option value="The Hague">The Hague</option>
-                    <option value="Eindhoven">Eindhoven</option>
-                    <option value="Other">Other</option>
+                  <option value="Amsterdam">Amsterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Utrecht">Utrecht</option>
+                  <option value="The Hague">The Hague</option>
+                  <option value="Eindhoven">Eindhoven</option>
+                  <option value="Other">Other</option>
                 </select>
                 <div className="city error">{errors.city}</div>
-                </div>
+              </div>
 
-                <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="email" className="required">
-                    Email:
+                  Email:
                 </label>
                 <input
-                    type="email"
-                    name="email"
-                    className="form-control custom-input"
-                    value={formData.email}
-                    onChange={handleInputChange}
+                  type="email"
+                  name="email"
+                  className="form-control custom-input"
+                  value={formData.email}
+                  onChange={handleInputChange}
                 />
                 <div className="email error">{errors.email}</div>
-                </div>
+              </div>
 
-                <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="password" className="required">
-                    Password:
+                  Password:
                 </label>
                 <input
-                    type="password"
-                    name="password"
-                    className="form-control custom-input"
-                    value={formData.password}
-                    onChange={handleInputChange}
+                  type="password"
+                  name="password"
+                  className="form-control custom-input"
+                  value={formData.password}
+                  onChange={handleInputChange}
                 />
                 <div className="password error">{errors.password}</div>
-                </div>
+              </div>
 
               <div className="login-option text-center d-flex justify-content-center mt-4">
                 <button type="submit" className="btn btn-outline-light">

@@ -8,9 +8,9 @@
     background-repeat: no-repeat;
 }
 
-.slogan {
+.slogan{
     font-family: "Papyrus";
-    margin-top: 8%;
+    margin-top: 15%;
     margin-bottom: 0;
     margin-left: 50%;
     transform: translate(-50%, -50%);
@@ -19,7 +19,7 @@
     text-align: center;
 }
 
-.bannerButton {
+.bannerButton{
     display: inline-block;
     padding: 13px 25px;
     margin-top: 2%;

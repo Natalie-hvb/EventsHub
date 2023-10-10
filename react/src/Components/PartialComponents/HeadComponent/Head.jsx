@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthComponents/AuthContext';
 import "./Head.css";
 
-function Head() {
+function Head(){
     const { user } = useContext(AuthContext);
     const [loggedInUser, setLoggedInUser] = useState(user);
 
-    useEffect(() => {
+    useEffect(() =>{
         setLoggedInUser(user);
     }, [user]);
 

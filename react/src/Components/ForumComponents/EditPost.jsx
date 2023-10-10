@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './EditPost.css';
 
-function EditPost({ user }) {
+function EditPost({ user }){
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [editedPost, setEditedPost] = useState({

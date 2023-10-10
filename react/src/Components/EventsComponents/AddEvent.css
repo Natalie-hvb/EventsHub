@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
 }
 
-.add-event-container {
+.add-event-container{
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -18,7 +18,7 @@
 }
 
   /* Heading style */
-.add-event-container h1 {
+.add-event-container h1{
   color: #000;
   font-weight: bold;
   font-size: 30px;
@@ -27,12 +27,12 @@
 }
 
   /* Form group style */
-.form-group {
+.form-group{
   margin-bottom: 20px;
 }
 
   /* Label style */
-.form-group label {
+.form-group label{
   display: block;
   font-weight: bold;
   margin-bottom: 6px;
@@ -44,7 +44,7 @@
 .form-group select,
 .form-group input[type="date"],
 .form-group input[type="number"],
-.form-group input[type="file"] {
+.form-group input[type="file"]{
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -52,12 +52,12 @@
 }
 
   /* Select style */
-.form-group select {
+.form-group select{
   appearance: none;
 }
 
   /* Button style */
-button[type="submit"] {
+button[type="submit"]{
   display: block;
   margin-top: 20px;
   margin-left: 30%;
@@ -72,6 +72,6 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover{
   background-color: #0056b3;
 }

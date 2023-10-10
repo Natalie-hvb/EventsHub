@@ -21,7 +21,7 @@
     height: 40px;
 }
 
-nav a.nav-link {
+nav a .nav-link{
     color: white;
 }
 

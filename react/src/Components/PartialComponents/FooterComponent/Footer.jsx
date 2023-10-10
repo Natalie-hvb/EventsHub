@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = () =>{
     return (
         <footer className="bg-black text-white" style={{ borderRadius: '10px' }}>
             <section className="p-1 border-bottom"></section>

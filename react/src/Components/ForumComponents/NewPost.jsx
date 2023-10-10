@@ -1,8 +1,8 @@
 import React from 'react';
 // import './NewPost.css'; // Import your CSS file
 
-function NewPost({ handleNewPost }) {
-  const handleSubmit = (e) => {
+function NewPost({ handleNewPost }){
+  const handleSubmit = (e) =>{
     e.preventDefault();
     const title = e.target.title.value;
     const body = e.target.body.value;

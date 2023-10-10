@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
 }
 
-.event-listings {
+.event-listings{
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -20,12 +20,13 @@
     border-radius: 8px;
 }
 
-.eventList {
+.eventList{
     list-style-type: none;
     padding: 0;
+    margin: auto;
 }
 
-.eventList li {
+.eventList li{
     margin: 0;
     padding: 15px;
     border: 1px solid #ddd;
@@ -33,7 +34,7 @@
     margin-bottom: 15px;
 }
 
-.eventList a {
+.eventList a{
     text-decoration: none;
     color: #7c1f7c;
     font-weight: bold;
@@ -46,7 +47,9 @@
     border-radius: 4px;
     margin-bottom: 15px;
     padding: 10px;
-    background-color: #E8772E;
+    background-color: #cf916b;
+    min-width: 700px;
+    width: 70%;
 }
 
 .event-image{
@@ -55,12 +58,12 @@
     height: auto;
 }
 
-.event-details {
+.event-details{
     flex-grow: 1;
     color: #000;
 }
 
-.add-event-button {
+.add-event-button{
     display: block;
     text-align: center;
     margin-top: 20px;
@@ -72,7 +75,6 @@
     font-weight: bold;
 }
 
-.add-event-button:hover {
+.add-event-button:hover{
     background-color: #0056b3;
 }
-
