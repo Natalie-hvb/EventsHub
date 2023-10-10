@@ -4,43 +4,43 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 // import { useAuth } from '../AuthComponents/AuthContext';
 
-const LoginForm = () => {
+const LoginForm = () =>{
   // const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
-  useEffect(() => {
+  
+  useEffect(() =>{
     document.title = 'Login';
   }, []);
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>{
     
     e.preventDefault();
     setEmailError('');
     setPasswordError('');
   
-    try {
+    try{
       console.log({ email, password });
       const response = await axios.post('http://localhost:7000/login', { email, password });
 
   
-      if (response.data.userData) {
+      if (response.data.userData){
         console.log(response.data)
         localStorage.setItem( 'usertoken', response.data.token )
         localStorage.setItem( 'user', JSON.stringify(response.data.userData ))
-        navigate('/');
-        // window.location.href = '/'
-      } else if (response.data.error) {
+      } else if (response.data.error){
         setEmailError(response.data.error.email);
         setPasswordError(response.data.error.password);
         // window.location.href = '/forum';
-      } else {
+      } else{
         
         console.error('Unexpected response format:', response.data);
       }
-    } catch (err) {
+    }
+    catch (err){
       console.error('API request failed:', err);
     }
   };

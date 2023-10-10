@@ -1,36 +1,36 @@
-body {
-    background: linear-gradient(to bottom, white, black);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+body{
+  background: linear-gradient(to bottom, white, black);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  label.required::after {
-    content: '*';
-    color: red;
-    margin-right: 5px;
-  }
+label .required::after{
+  content: '*';
+  color: red;
+  margin-right: 5px;
+}
 
-  .custom-input:focus,
-  .custom-input:hover {
-    border-color: black;
-    box-shadow: 0 0 5px black;
-  }
+.custom-input:focus,
+.custom-input:hover{
+  border-color: black;
+  box-shadow: 0 0 5px black;
+}
 
-  .better-together-wrapper {
-    margin: auto;
-    height: 100%;
-    width: 100%;
-    background-image: url('../../../public/img/signup-img.jpeg');
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 20px;
-    padding-bottom: 40px;
-  }
+.better-together-wrapper{
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  background-image: url('../../../public/img/signup-img.jpeg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
 
-  .text-shadow {
-    text-shadow:
+.text-shadow{
+  text-shadow:
     0.03em 0 black,
     0 0.03em black,
     -0.03em 0 black,
@@ -39,57 +39,57 @@ body {
     -0.03em 0.03em black,
     0.03em -0.03em black,
     0.03em 0.03em black;
-  /* Adjust the shadow values as needed */
-  }
-  label{
-    color: white;
-      font-size: 20px;
-      text-shadow:
-          0.05em 0 black,
-          0 0.05em black,
-          -0.05em 0 black,
-          0 -0.05em black,
-          -0.05em -0.05em black,
-          -0.05em 0.05em black,
-          0.05em -0.05em black,
-          0.05em 0.05em black;
-  }
-  .sign{
-    color: white;
-    text-shadow:
-          0.05em 0 black,
-          0 0.05em black,
-          -0.05em 0 black,
-          0 -0.05em black,
-          -0.05em -0.05em black,
-          -0.05em 0.05em black,
-          0.05em -0.05em black,
-          0.05em 0.05em black;
-  }
+/* Adjust the shadow values as needed */
+}
+label{
+  color: white;
+  font-size: 20px;
+  text-shadow:
+      0.05em 0 black,
+      0 0.05em black,
+      -0.05em 0 black,
+      0 -0.05em black,
+      -0.05em -0.05em black,
+      -0.05em 0.05em black,
+      0.05em -0.05em black,
+      0.05em 0.05em black;
+}
+.sign{
+  color: white;
+  text-shadow:
+    0.05em 0 black,
+    0 0.05em black,
+    -0.05em 0 black,
+    0 -0.05em black,
+    -0.05em -0.05em black,
+    -0.05em 0.05em black,
+    0.05em -0.05em black,
+    0.05em 0.05em black;
+}
 
-  .welcome-non-user{
-    width: 40%;
-    margin: auto;
-    color:white;
-    backdrop-filter: blur(20px) saturate(100%);
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 20px 25px;
-  }
+.welcome-non-user{
+  width: 40%;
+  margin: auto;
+  color:white;
+  backdrop-filter: blur(20px) saturate(100%);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 20px 25px;
+}
 
-  .welcome-non-user h3{
-    text-shadow:
-          0.05em 0 black,
-          0 0.05em black,
-          -0.05em 0 black,
-          0 -0.05em black,
-          -0.05em -0.05em black,
-          -0.05em 0.05em black,
-          0.05em -0.05em black,
-          0.05em 0.05em black;
-  }
+.welcome-non-user h3{
+  text-shadow:
+    0.05em 0 black,
+    0 0.05em black,
+    -0.05em 0 black,
+    0 -0.05em black,
+    -0.05em -0.05em black,
+    -0.05em 0.05em black,
+    0.05em -0.05em black,
+    0.05em 0.05em black;
+}
 
-  .main{
-    backdrop-filter: blur(15px) saturate(100%);
-    background: rgba(0, 0, 0, 0.3);
-  }
+.main{
+  backdrop-filter: blur(15px) saturate(100%);
+  background: rgba(0, 0, 0, 0.3);
+}

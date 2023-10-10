@@ -17,7 +17,7 @@ import EditPost from './Components/ForumComponents/EditPost';
 import NotFound from './Components/NotFound';
 // import Profile from './Profile';
 
-function App() {
+function App(){
   const { user } = useAuth();
   
 

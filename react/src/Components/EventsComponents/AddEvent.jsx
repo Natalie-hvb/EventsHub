@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import "./AddEvent.css";
 import axios from "axios";
 
-const AddEvent = ({ userId }) => {
-    useEffect(() => {
+const AddEvent = ({ userId }) =>{
+    useEffect(() =>{
         document.title = 'Add Event';
     }, []);
 
@@ -17,19 +17,20 @@ const AddEvent = ({ userId }) => {
         category: 'Concert',
     });
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e) =>{
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log(name, value)
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e) =>{
         setFormData({ ...formData, image: e.target.files[0] });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        try {
+        try{
             const formDataToSend = new FormData();
             formDataToSend.append('topic', formData.topic);
             formDataToSend.append('description', formData.description);
@@ -41,11 +42,7 @@ const AddEvent = ({ userId }) => {
             formDataToSend.append('user', userId);
         
             // Make a POST request to your backend API
-            const response = await axios.post(`http://localhost:7000/events/add`, formDataToSend, {
-                headers: {
-                    'Content-Type': 'multipart/form-data', // Important for handling files
-                },
-            });
+            const response = await axios.post(`http://localhost:7000/events/add`, formDataToSend);
         
             // Handle success, e.g., show a success message, redirect, etc.
             console.log('Event added successfully:', response.data);
@@ -60,7 +57,8 @@ const AddEvent = ({ userId }) => {
                 minAge: 0,
                 category: 'Concert',
             });
-            } catch (error) {
+            }
+            catch (error){
                 // Handle errors, e.g., show an error message
                 console.error('Error adding event:', error);
             }

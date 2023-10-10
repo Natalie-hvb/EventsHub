@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require("../middleware/multer");
 
 const eventController = require("../controllers/eventController")
 const mainController = require('../controllers/mainController');
@@ -45,7 +46,7 @@ router.delete('/post/:postId/like/:userId', forumController.removePostLike)
 
 router.get('/events', eventController.getEventsPage);
 
-router.post('/events/add', auth.requireAuth, eventController.addEvent);
+router.post('/events/add', upload.single("image"), eventController.addEvent);
 
 router.get('/events/:id', eventController.getEventDetails);
 

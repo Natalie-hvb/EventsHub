@@ -28,8 +28,8 @@ const evOpts = {
 
 app.use(cors(evOpts));
 app.use(cors(corsOptions));
-app.use(express.static('public'));
-app.use('/public/img', express.static('./public/img'))
+app.use(express.static('img'));
+app.use('/img', express.static('./img'))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

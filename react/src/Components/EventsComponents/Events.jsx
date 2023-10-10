@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import "./Events.css"
 
-const Events = () => {
+const Events = () =>{
     const [events, setEvents] = useState([]);
 
-    useEffect(() => {
+    useEffect(() =>{
         document.title = 'Events';
         axios.get('http://localhost:7000/events')
-            .then((response) => {
+            .then((response) =>{
                 console.log('Response Data:', response.data);
                 setEvents(response.data);
             })
-            .catch((error) => {
+            .catch((error) =>{
                 console.error('Error fetching event data:', error);
             });
     }, []);
@@ -21,9 +21,9 @@ const Events = () => {
         <div className="eventsPage">
             <div className="event-listings">
                 <ul className="eventList">
-                    {events.map((event) => (
+                    {events.map((event) =>(
                         <li className="event-item" key={event._id}>
-                            <img src={event.image} alt={event.topic} className="event-image" />
+                            <img src={`http://localhost:7000/${event.image}`} alt={event.topic} className="event-image" />
                             <div className="event-details">
                                 <a href={`/events/${event._id}`}>{event.topic}</a>
                                 <p>Date: {event.date}</p>

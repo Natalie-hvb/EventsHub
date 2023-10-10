@@ -3,28 +3,28 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './FullPost.css'
 
-function FullPost({ user }) {
+function FullPost({ user }){
   console.log(user);
   const { id } = useParams();
   const [post, setPost] = useState(null);
 
-  useEffect(() => {
+  useEffect(() =>{
     axios.get(`http://localhost:7000/post/${id}`)
-      .then(response => {
+      .then(response =>{
         setPost(response.data);
       })
-      .catch(error => {
+      .catch(error =>{
         console.error('Error fetching post details: ', error);
       });
   }, [id]);
 
-  const handleDeletePost = () => {
+  const handleDeletePost = () =>{
     axios.delete(`http://localhost:7000/delete-post/${id}`)
-      .then(() => {
+      .then(() =>{
         // Redirect to the forum page after deletion
         window.location.href = '/forum';
       })
-      .catch(error => {
+      .catch(error =>{
         console.error('Error deleting post: ', error);
       });
   };
@@ -34,7 +34,7 @@ function FullPost({ user }) {
     
     <div id="container">
       <div id='back-to-forum'>
-      <a href="/forum" class="btn btn-outline-light">Back</a>
+        <a href="/forum" class="btn btn-outline-light">Back</a>
       </div>
       
       <div className="card-body">
@@ -47,16 +47,16 @@ function FullPost({ user }) {
               <p className="card-text written">Created at: {new Date(post.createdAt).toLocaleTimeString()}</p>
               {user.id === post.user_id._id && (
                 <div>
-                <div className="post-actions">
-                  <button className="btn btn-danger" onClick={handleDeletePost}>Delete</button>
-                  <a href={`/post/edit/${post._id}`} className="btn btn-light">Edit Post</a>
+                  <div className="post-actions">
+                    <button className="btn btn-danger" onClick={handleDeletePost}>Delete</button>
+                    <a href={`/post/edit/${post._id}`} className="btn btn-light">Edit Post</a>
+                  </div>
                 </div>
-              </div>
               )}
             </div>
             <div className="full-post">
               <h4>Comments</h4>
-              {post.comments && post.comments.map(comment => (
+              {post.comments && post.comments.map(comment =>(
                 <div key={comment._id} className="comment mb-3">
                   <p>{comment.comment}</p>
                   <p className="card-text written">Written by: {comment.user_id.name}</p>
@@ -64,11 +64,9 @@ function FullPost({ user }) {
                 </div>
               ))}
             </div>
-            
           </div>
         )}
       </div>
-      
     </div>
   );
 }

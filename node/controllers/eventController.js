@@ -19,7 +19,7 @@ exports.getEventsPage = async (req, res) => {
 };
 
 exports.addEvent = async (req, res) => {
-    console.log(req.body);
+    console.log(req.file);
     try {
         /* // Check if res.locals.user is defined
         if (!req.params.user || !req.params.user._id) {
@@ -34,7 +34,7 @@ exports.addEvent = async (req, res) => {
             description: req.body.description,
             location: req.body.location,
             date: req.body.date,
-            image: req.body.image,
+            image: req.file.path,
             minAge: req.body.minAge,
             category: req.body.category,
             // Set the 'user' field to the user ID of the currently logged-in user

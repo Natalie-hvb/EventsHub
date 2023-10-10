@@ -2,17 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthComponents/AuthContext';
 import "./Head.css";
 
-function Head() {
-    const [loggedInUser, setLoggedInUser] = useState(null);
-    
-    setInterval(() => {
-        const user  = localStorage.getItem('usertoken');
-        setLoggedInUser(user);
-        console.log('object', user)
-    }, 500)
+function Head(){
+    const { user } = useContext(AuthContext);
+    const [loggedInUser, setLoggedInUser] = useState(user);
 
-    useEffect(() => {
-    }, []);
+    useEffect(() =>{
+        setLoggedInUser(user);
+    }, [user]);
 
     return (
         <div>

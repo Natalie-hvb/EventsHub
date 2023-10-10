@@ -3,24 +3,24 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-function AuthProvider({ children }) {
+function AuthProvider({ children }){
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Check if the user is already logged in 
-  useEffect(() => {
+  useEffect(() =>{
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    if (storedUser){
       const userData = JSON.parse(storedUser);
       setUser(userData);
     }
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email, password) =>{
     console.log('Login function called');
 
-    try {
+    try{
       const response = await axios.post('http://localhost:7000/login', {
         email,
         password,
@@ -29,24 +29,26 @@ function AuthProvider({ children }) {
       localStorage.setItem( 'usertoken', response.data.token )
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
-    } catch (error) {
+    }
+    catch (error){
       console.error('Login failed:', error);
     }
   };
   
 
-  const logout = async () => {
-    try {
+  const logout = async () =>{
+    try{
       await axios.get('http://localhost:7000/logout');
       localStorage.removeItem('user');
       localStorage.removeItem( 'usertoken' )
       setUser(null);
-    } catch (error) {
+    }
+    catch (error){
       console.error('Logout failed:', error);
     }
   };
 
-  if (loading) {
+  if (loading){
     return <div>Loading...</div>;
   }
 
@@ -58,9 +60,9 @@ function AuthProvider({ children }) {
   );
 }
 
-function useAuth() {
+function useAuth(){
   const context = useContext(AuthContext);
-  if (!context) {
+  if (!context){
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
